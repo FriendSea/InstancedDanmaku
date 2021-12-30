@@ -10,8 +10,14 @@ namespace InstancedDanmaku
 		[SerializeField]
 		internal Mesh mesh;
 		[SerializeField]
-		internal Vector3 scale;
+		internal Texture2D texture;
+		[SerializeField]
+		internal Vector3 scale = Vector3.one;
 		[SerializeField]
 		internal Material material;
+		[SerializeField]
+		internal float radius = 0.1f;
+		[SerializeField]
+		internal bool vanishEffect = true;
 	}
 }
