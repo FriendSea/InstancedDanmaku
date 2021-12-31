@@ -7,7 +7,7 @@ MonoImporter:
   - mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
   - material: {fileID: 2100000, guid: 370dcc11519eed24584de67bef422266, type: 2}
   executionOrder: 0
-  icon: {instanceID: 0}
+  icon: {fileID: 2800000, guid: a76959de6f0e9bb4187c587f86424533, type: 3}
   userData: 
   assetBundleName: 
   assetBundleVariant: 

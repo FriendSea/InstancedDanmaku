@@ -1,11 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using InstancedDanmaku;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, InstancedDanmaku.IBulletCollider
 {
 	[SerializeField]
 	float speed = 0.1f;
+	[SerializeField]
+	GameObject hitEffect;
+
+	public bool DeleteBullet => true;
+
+	public void Collide(Bullet bullet)
+	{
+		var effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
+		Destroy(effect, 0.5f);
+	}
 
 	private void FixedUpdate()
 	{

@@ -16,11 +16,11 @@ MonoBehaviour:
   useFixedUpdate: 1
   vanishEffect: {fileID: 11400000, guid: 72b73bfe93e6644879d0dccf8e7769c4, type: 2}
   vanishBulletBehaviour:
-    rid: 2940269604731879841
+    rid: 2940269628458270899
   references:
     version: 2
     RefIds:
-    - rid: 2940269604731879841
+    - rid: 2940269628458270899
       type: {class: VanishEffectBehaviour, ns: InstancedDanmaku, asm: Assembly-CSharp}
       data:
         lifeTime: 10

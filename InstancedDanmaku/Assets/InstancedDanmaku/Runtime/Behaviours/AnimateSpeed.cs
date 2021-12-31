@@ -9,8 +9,6 @@ namespace InstancedDanmaku
 		[SerializeField]
 		AnimationCurve curve;
 
-		
-
 		public void UpdateBullet(ref Bullet bullet)
 		{
 			bullet.velocity = bullet.rotation * Vector3.forward * curve.Evaluate(bullet.CurrentFrame);

@@ -8,16 +8,23 @@ namespace InstancedDanmaku
 	public class BulletModel : ScriptableObject
 	{
 		[SerializeField]
-		internal Mesh mesh;
+		Mesh mesh;
 		[SerializeField]
-		internal Texture2D texture;
+		Texture2D texture;
 		[SerializeField]
-		internal Vector3 scale = Vector3.one;
+		Material material;
 		[SerializeField]
-		internal Material material;
+		Vector3 scale = Vector3.one;
 		[SerializeField]
-		internal float radius = 0.1f;
+		float radius = 0.1f;
 		[SerializeField]
-		internal bool vanishEffect = true;
+		bool vanishEffect = true;
+
+		public Mesh Mesh => mesh;
+		public Texture2D Texture => texture;
+		public Material Material => material;
+		public Vector3 Scale => scale;
+		public float Radius => radius;
+		public bool VanishEffect => vanishEffect;
 	}
 }

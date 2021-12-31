@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
   texture: {fileID: 2800000, guid: 6684a41f272f14d28b81a311035e91c9, type: 3}
-  scale: {x: 1, y: 1, z: 1}
   material: {fileID: 2100000, guid: f2c88bb7a2feb483a85e0feda4c4df29, type: 2}
+  scale: {x: 1, y: 1, z: 1}
   radius: -1
   vanishEffect: 0

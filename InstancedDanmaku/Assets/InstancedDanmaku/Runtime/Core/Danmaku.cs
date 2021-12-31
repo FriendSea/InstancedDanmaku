@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Collections;
-using Unity.Jobs;
 using System.Linq;
 
 namespace InstancedDanmaku
@@ -55,7 +53,7 @@ namespace InstancedDanmaku
 	{
 		const int MAX_BULLETS = 1023;
 
-		BulletModel model;
+		public BulletModel Model { get; }
 
 		Bullet[] bullets;
 		Matrix4x4[] matricies;
@@ -68,7 +66,7 @@ namespace InstancedDanmaku
 
 		internal BulletGroup(BulletModel model)
 		{
-			this.model = model;
+			this.Model = model;
 
 			bullets = new Bullet[MAX_BULLETS];
 			matricies = new Matrix4x4[MAX_BULLETS];
@@ -82,9 +80,9 @@ namespace InstancedDanmaku
 		{
 			var index = Unused.Pop();
 			bullets[index] = new Bullet(position, rotation, Vector3.zero, new Vector4(color.r, color.g, color.b, color.a), behaviour);
-			//colors[index] = new Vector4(color.r, color.g, color.b, color.a);
 		}
 
+		List<IBulletCollider> collisionTargets = new List<IBulletCollider>();
 		//JobHandle jobHandle;
 		internal void UpdateBullets()
 		{
@@ -96,20 +94,25 @@ namespace InstancedDanmaku
 
 			for (int i = 0; i < bullets.Length; i++)
 			{
-
-				if (raycastHits[i].collider != null)
+				if(raycastCommands[i].radius > 0)
 				{
-					var delete = false;
-					foreach(var target in raycastHits[i].collider.GetComponentsInChildren<IBulletCollider>())
+					if (raycastHits[i].collider != null)
 					{
-						target.Collide(bullets[i]);
-						delete |= target.DeleteBullet;
+						var delete = false;
+						raycastHits[i].collider.GetComponentsInChildren<IBulletCollider>(collisionTargets);
+						if (collisionTargets.Count <= 0)
+							delete = true;
+						else foreach (var target in collisionTargets)
+						{
+							target.Collide(bullets[i]);
+							delete |= target.DeleteBullet;
+						}
+						if (delete)
+							bullets[i].Destroy();
 					}
-					if (delete)
-						bullets[i].Destroy();
 				}
 
-				matricies[i] = bullets[i].Active ? Matrix4x4.TRS(bullets[i].position, bullets[i].rotation, model.scale) : Matrix4x4.zero;
+				matricies[i] = bullets[i].Active ? Matrix4x4.TRS(bullets[i].position, bullets[i].rotation, Model.Scale) : Matrix4x4.zero;
 
 				bullets[i].Update();
 				colors[i] = bullets[i].color;
@@ -119,11 +122,11 @@ namespace InstancedDanmaku
 					bullets[i].Used = false;
 					Unused.Push(i);
 
-					if (model.vanishEffect)
+					if (Model.VanishEffect)
 						Danmaku.Instance.AddBullet(DanmakuSettings.Instance.vanishEffect, bullets[i].position, Quaternion.identity, bullets[i].color, DanmakuSettings.Instance.vanishBulletBehaviour);
 				}
 
-				raycastCommands[i] = bullets[i].Used ? new SpherecastCommand(bullets[i].position - camDir, model.radius, camDir, 2f) : new SpherecastCommand();
+				raycastCommands[i] = bullets[i].Used ? new SpherecastCommand(bullets[i].position - camDir, Model.Radius, camDir, 2f, DanmakuSettings.Instance.collisionMask) : new SpherecastCommand();
 
 				//jobHandle = SpherecastCommand.ScheduleBatch(raycastCommands, raycastHits, 20);
 			}
@@ -134,8 +137,8 @@ namespace InstancedDanmaku
 		{
 			propertyBlock.Clear();
 			propertyBlock.SetVectorArray("_Color", colors);
-			propertyBlock.SetTexture("_MainTex", model.texture);
-			Graphics.DrawMeshInstanced(model.mesh, 0, model.material, matricies, MAX_BULLETS, propertyBlock);
+			propertyBlock.SetTexture("_MainTex", Model.Texture);
+			Graphics.DrawMeshInstanced(Model.Mesh, 0, Model.Material, matricies, MAX_BULLETS, propertyBlock);
 		}
 
 		internal void DrawGizmos()
@@ -143,32 +146,13 @@ namespace InstancedDanmaku
 			Gizmos.color = Color.green;
 			foreach (var bul in bullets)
 				if (bul.Active)
-					Gizmos.DrawWireSphere(bul.position, model.radius);
+					Gizmos.DrawWireSphere(bul.position, Model.Radius);
 		}
 
 		public void Dispose()
 		{
 			raycastCommands.Dispose();
 			raycastHits.Dispose();
-		}
-	}
-
-	[System.Serializable]
-	class DefaultBehaviour : IBulletBehaviour
-	{
-		[SerializeField]
-		float speed = 1f;
-		[SerializeField]
-		int lifeTime = 600;
-
-		public bool VanishEffect => true;
-
-		public void UpdateBullet(ref Bullet bullet)
-		{
-			if (bullet.CurrentFrame == 0)
-				bullet.velocity = bullet.rotation * Vector3.forward * speed;
-			if (bullet.CurrentFrame > lifeTime)
-				bullet.Destroy();
 		}
 	}
 
@@ -195,20 +179,22 @@ namespace InstancedDanmaku
 		static Danmaku _instance = null;
 		public static Danmaku Instance => _instance ?? (_instance = new Danmaku());
 
-		Dictionary<BulletModel, List<BulletGroup>> groups = new Dictionary<BulletModel, List<BulletGroup>>();
+		List<BulletGroup> groups = new List<BulletGroup>();
 
 		public void AddBullet(BulletModel model, Vector3 position, Quaternion rotation, Color color, IBulletBehaviour behaviour)
 		{
-			if (!groups.ContainsKey(model))
-				groups.Add(model, new List<BulletGroup>());
-
 			BulletGroup group = null;
-			foreach (var g in groups[model])
-				if (g.HasEmpty) group = g;
-			if (group == null)
+			foreach(var g in groups)
+			{
+				if (g.Model != model) continue;
+				if (!g.HasEmpty) continue;
+				group = g;
+				break;
+			}
+			if(group == null)
 			{
 				group = new BulletGroup(model);
-				groups[model].Add(group);
+				groups.Add(group);
 			}
 
 			group.AddNewBullet(position, rotation, color, behaviour);
@@ -216,39 +202,26 @@ namespace InstancedDanmaku
 
 		public void Update()
 		{
-			for(int i= 0;i < groups.Count;i++)
-			{
-				foreach (var g in groups.ElementAt(i).Value)
-					g.UpdateBullets();
-			}
+			for (int i = 0; i < groups.Count; i++)
+				groups[i].UpdateBullets();
 		}
 
 		public void Render()
 		{
-			foreach (var group in groups)
-			{
-				foreach (var g in group.Value)
-					g.Render();
-			}
+			foreach (var g in groups)
+				g.Render();
 		}
 
 		internal void DrawGizmos()
 		{
-			foreach (var group in groups)
-			{
-				foreach (var g in group.Value)
-					g.DrawGizmos();
-			}
+			foreach (var g in groups)
+				g.DrawGizmos();
 		}
 
 		public void Dispose()
 		{
 			foreach (var group in groups)
-			{
-				foreach (var g in group.Value)
-					g.Dispose();
-				group.Value.Clear();
-			}
+				group.Dispose();
 			groups.Clear();
 		}
 	}
