@@ -939,14 +939,14 @@ MonoBehaviour:
   count: 0
   loopLength: 0
   behaviour:
-    rid: 2940269620485423519
+    rid: 2940269633226670579
   references:
     version: 2
     RefIds:
-    - rid: 2940269620485423519
-      type: {class: DefaultBehaviour, ns: InstancedDanmaku, asm: Assembly-CSharp}
+    - rid: 2940269633226670579
+      type: {class: DefaultBehaviour, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:
-        speed: 0.083333336
+        speed: 0.1
         lifeTime: 200
 --- !u!4 &1643444896
 Transform:
@@ -990,14 +990,14 @@ MonoBehaviour:
   count: 0
   loopLength: 0
   behaviour:
-    rid: 2940269620485423519
+    rid: 2940269633226670580
   references:
     version: 2
     RefIds:
-    - rid: 2940269620485423519
-      type: {class: DefaultBehaviour, ns: InstancedDanmaku, asm: Assembly-CSharp}
+    - rid: 2940269633226670580
+      type: {class: DefaultBehaviour, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:
-        speed: 0.083333336
+        speed: 0.1
         lifeTime: 200
 --- !u!114 &1643444898
 MonoBehaviour:
@@ -1019,15 +1019,15 @@ MonoBehaviour:
   angleDelta: 45
   rotateSpeed: 0
   span: 0
-  count: 15
+  count: 20
   loopLength: 120
   behaviour:
-    rid: 2940269628458270984
+    rid: 2940269633226670599
   references:
     version: 2
     RefIds:
-    - rid: 2940269628458270984
-      type: {class: CruvedBullet, ns: InstancedDanmaku, asm: Assembly-CSharp}
+    - rid: 2940269633226670599
+      type: {class: CruvedBullet, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:
         speed: 0.2
         curve:
@@ -1043,7 +1043,7 @@ MonoBehaviour:
             inWeight: 0
             outWeight: 0.33333334
           - serializedVersion: 3
-            time: 5
+            time: 10.833333
             value: 0
             inSlope: 0
             outSlope: 0
@@ -1052,16 +1052,16 @@ MonoBehaviour:
             inWeight: 0.33333334
             outWeight: 0.33333334
           - serializedVersion: 3
-            time: 30
-            value: 14
-            inSlope: 0.00000011677646
-            outSlope: 0.00000011677646
-            tangentMode: 0
+            time: 40
+            value: 10
+            inSlope: -0.010389626
+            outSlope: -0.010389626
+            tangentMode: 34
             weightedMode: 0
             inWeight: 0.33333334
-            outWeight: 1
+            outWeight: 0.33333334
           - serializedVersion: 3
-            time: 50
+            time: 67.5
             value: 0
             inSlope: 0
             outSlope: 0
@@ -1101,15 +1101,15 @@ MonoBehaviour:
   angleDelta: 45
   rotateSpeed: 0
   span: 0
-  count: 15
+  count: 20
   loopLength: 120
   behaviour:
-    rid: 2940269628458270984
+    rid: 2940269633226670599
   references:
     version: 2
     RefIds:
-    - rid: 2940269628458270984
-      type: {class: CruvedBullet, ns: InstancedDanmaku, asm: Assembly-CSharp}
+    - rid: 2940269633226670599
+      type: {class: CruvedBullet, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:
         speed: 0.2
         curve:
@@ -1125,7 +1125,7 @@ MonoBehaviour:
             inWeight: 0
             outWeight: 0.33333334
           - serializedVersion: 3
-            time: 5
+            time: 10.833333
             value: 0
             inSlope: 0
             outSlope: 0
@@ -1134,16 +1134,16 @@ MonoBehaviour:
             inWeight: 0.33333334
             outWeight: 0.33333334
           - serializedVersion: 3
-            time: 30
-            value: -14
-            inSlope: 0.00000011677646
-            outSlope: 0.00000011677646
-            tangentMode: 0
+            time: 40
+            value: -10
+            inSlope: 0.010389626
+            outSlope: 0.010389626
+            tangentMode: 34
             weightedMode: 0
             inWeight: 0.33333334
-            outWeight: 1
+            outWeight: 0.33333334
           - serializedVersion: 3
-            time: 50
+            time: 67.5
             value: 0
             inSlope: 0
             outSlope: 0
@@ -1186,12 +1186,12 @@ MonoBehaviour:
   count: 0
   loopLength: 0
   behaviour:
-    rid: 2940269628458271510
+    rid: 2940269633226670581
   references:
     version: 2
     RefIds:
-    - rid: 2940269628458271510
-      type: {class: AnimateSpeed, ns: InstancedDanmaku, asm: Assembly-CSharp}
+    - rid: 2940269633226670581
+      type: {class: AnimateSpeed, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:
         curve:
           serializedVersion: 2
@@ -1199,14 +1199,14 @@ MonoBehaviour:
           - serializedVersion: 3
             time: 0
             value: 0.1
-            inSlope: -0.00090566033
-            outSlope: -0.00090566033
+            inSlope: -0.0008578808
+            outSlope: -0.0008578808
             tangentMode: 34
             weightedMode: 0
             inWeight: 0
             outWeight: 0.33333334
           - serializedVersion: 3
-            time: 110.41667
+            time: 116.566315
             value: 0
             inSlope: 0
             outSlope: 0
@@ -1215,7 +1215,7 @@ MonoBehaviour:
             inWeight: 0.33333334
             outWeight: 0.33333334
           - serializedVersion: 3
-            time: 216.66667
+            time: 221.2381
             value: 0.2
             inSlope: 0
             outSlope: 0
@@ -1224,7 +1224,7 @@ MonoBehaviour:
             inWeight: 0.33333334
             outWeight: 0.33333334
           - serializedVersion: 3
-            time: 500
+            time: 570.937
             value: 0.2
             inSlope: 0
             outSlope: 0
