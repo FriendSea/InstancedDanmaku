@@ -7,7 +7,7 @@ namespace InstancedDanmaku
 	public class DanmakuSettings : ScriptableObject
 	{
 		[SerializeField]
-		internal int collisionMask = -1;
+		internal int collisionMask = 1;
 		[SerializeField]
 		internal bool useFixedUpdate;
 		[SerializeField]
@@ -16,6 +16,6 @@ namespace InstancedDanmaku
 		internal IBulletBehaviour vanishBulletBehaviour = new VanishEffectBehaviour();
 
 		static DanmakuSettings _instance = null;
-		internal static DanmakuSettings Instance => (_instance == null) ? (_instance = Resources.Load<DanmakuSettings>("InstancedDanmaku/Setting")) : _instance;
+		public static DanmakuSettings Instance => (_instance == null) ? (_instance = Resources.Load<DanmakuSettings>("InstancedDanmaku/Setting")) : _instance;
 	}
 }

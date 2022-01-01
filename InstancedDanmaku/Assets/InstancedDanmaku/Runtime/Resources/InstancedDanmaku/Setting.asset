@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d6a16332cfe74d539ec54c240236e1c, type: 3}
   m_Name: Setting
   m_EditorClassIdentifier: 
-  collisionMask: -1
+  collisionMask: 1
   useFixedUpdate: 1
   vanishEffect: {fileID: 11400000, guid: 72b73bfe93e6644879d0dccf8e7769c4, type: 2}
   vanishBulletBehaviour:
-    rid: 2940269628458270899
+    rid: 2940269633226670400
   references:
     version: 2
     RefIds:
-    - rid: 2940269628458270899
+    - rid: 2940269633226670400
       type: {class: VanishEffectBehaviour, ns: InstancedDanmaku, asm: Assembly-CSharp}
       data:
-        lifeTime: 10
+        lifeTime: 20
