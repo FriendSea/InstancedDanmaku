@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace InstancedDanmaku
 {
+	[CreateAssetMenu(fileName = "New Bullet Settings", menuName = "FriendSea/DanmakuSetting")]
 	public class DanmakuSettings : ScriptableObject
 	{
 		[SerializeField]
@@ -11,11 +12,12 @@ namespace InstancedDanmaku
 		[SerializeField]
 		internal bool useFixedUpdate;
 		[SerializeField]
+		internal float collisionDepth = 1f;
+		[SerializeField]
 		internal BulletModel vanishEffect;
 		[SerializeReference, BulletBehaviourSelector]
 		internal IBulletBehaviour vanishBulletBehaviour = new VanishEffectBehaviour();
 
-		static DanmakuSettings _instance = null;
-		public static DanmakuSettings Instance => (_instance == null) ? (_instance = Resources.Load<DanmakuSettings>("InstancedDanmaku/Setting")) : _instance;
+		public static DanmakuSettings Current { get; set; }
 	}
 }

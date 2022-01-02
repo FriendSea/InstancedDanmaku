@@ -123,10 +123,10 @@ namespace InstancedDanmaku
 					Unused.Push(i);
 
 					if (Model.VanishEffect)
-						Danmaku.Instance.AddBullet(DanmakuSettings.Instance.vanishEffect, bullets[i].position, Quaternion.identity, bullets[i].color, DanmakuSettings.Instance.vanishBulletBehaviour);
+						Danmaku.Instance.AddBullet(DanmakuSettings.Current.vanishEffect, bullets[i].position, Quaternion.identity, bullets[i].color, DanmakuSettings.Current.vanishBulletBehaviour);
 				}
 
-				raycastCommands[i] = bullets[i].Used ? new SpherecastCommand(bullets[i].position - camDir, Model.Radius, camDir, 2f, DanmakuSettings.Instance.collisionMask) : new SpherecastCommand();
+				raycastCommands[i] = bullets[i].Used ? new SpherecastCommand(bullets[i].position - camDir * DanmakuSettings.Current.collisionDepth, Model.Radius, camDir, DanmakuSettings.Current.collisionDepth * 2f, DanmakuSettings.Current.collisionMask) : new SpherecastCommand();
 
 				//jobHandle = SpherecastCommand.ScheduleBatch(raycastCommands, raycastHits, 20);
 			}

@@ -329,6 +329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e02bb8a74af24404fab62dfe8dabd059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  danmakuSettings: {fileID: 11400000, guid: 0de2bb20a84254cb7821efe8e327ade5, type: 2}
 --- !u!4 &486674916
 Transform:
   m_ObjectHideFlags: 0
@@ -941,6 +942,9 @@ MonoBehaviour:
   loopLength: 0
   behaviour:
     rid: 2940269633226670579
+  onFire:
+    m_PersistentCalls:
+      m_Calls: []
   references:
     version: 2
     RefIds:
@@ -992,6 +996,9 @@ MonoBehaviour:
   loopLength: 0
   behaviour:
     rid: 2940269633226670580
+  onFire:
+    m_PersistentCalls:
+      m_Calls: []
   references:
     version: 2
     RefIds:
@@ -1024,6 +1031,9 @@ MonoBehaviour:
   loopLength: 120
   behaviour:
     rid: 2940269633226670599
+  onFire:
+    m_PersistentCalls:
+      m_Calls: []
   references:
     version: 2
     RefIds:
@@ -1106,6 +1116,9 @@ MonoBehaviour:
   loopLength: 120
   behaviour:
     rid: 2940269633226670599
+  onFire:
+    m_PersistentCalls:
+      m_Calls: []
   references:
     version: 2
     RefIds:
@@ -1188,6 +1201,9 @@ MonoBehaviour:
   loopLength: 0
   behaviour:
     rid: 2940269633226670581
+  onFire:
+    m_PersistentCalls:
+      m_Calls: []
   references:
     version: 2
     RefIds:
@@ -1260,6 +1276,9 @@ MonoBehaviour:
   loopLength: 0
   behaviour:
     rid: 852585555119308822
+  onFire:
+    m_PersistentCalls:
+      m_Calls: []
   references:
     version: 2
     RefIds:

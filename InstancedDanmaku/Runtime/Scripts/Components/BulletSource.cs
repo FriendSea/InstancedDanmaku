@@ -31,13 +31,13 @@ namespace InstancedDanmaku
 
 		private void FixedUpdate()
 		{
-			if (DanmakuSettings.Instance.useFixedUpdate)
+			if (DanmakuSettings.Current.useFixedUpdate)
 				UpdateSource();
 		}
 
 		private void Update()
 		{
-			if (!DanmakuSettings.Instance.useFixedUpdate)
+			if (!DanmakuSettings.Current.useFixedUpdate)
 				UpdateSource();
 		}
 

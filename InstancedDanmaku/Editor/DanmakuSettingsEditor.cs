@@ -14,6 +14,7 @@ namespace InstancedDanmaku
             serializedObject.Update();
 
             EditorGUILayout.PropertyField(serializedObject.FindProperty("useFixedUpdate"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("collisionDepth"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("vanishEffect"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("vanishBulletBehaviour"));
 
@@ -53,6 +54,7 @@ namespace InstancedDanmaku
         }
     }
 
+    /*
     static class DanmakuSettingsProvider
     {
         static Editor editor = null;
@@ -65,7 +67,7 @@ namespace InstancedDanmaku
                 label = "InstancedDanmaku",
                 guiHandler = searchContxt => {
                     if (editor == null)
-                        editor = Editor.CreateEditor(DanmakuSettings.Instance);
+                        editor = Editor.CreateEditor(DanmakuSettings.Current);
                     editor.OnInspectorGUI();
                 },
             };
@@ -73,4 +75,5 @@ namespace InstancedDanmaku
             return provider;
         }
     }
+    */
 }

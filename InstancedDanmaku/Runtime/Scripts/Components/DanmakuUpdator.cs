@@ -6,15 +6,23 @@ namespace InstancedDanmaku
 {
 	public class DanmakuUpdator : MonoBehaviour
 	{
+		[SerializeField]
+		DanmakuSettings danmakuSettings;
+
+		private void Awake()
+		{
+			DanmakuSettings.Current = danmakuSettings;
+		}
+
 		private void FixedUpdate()
 		{
-			if (DanmakuSettings.Instance.useFixedUpdate)
+			if (DanmakuSettings.Current.useFixedUpdate)
 				Danmaku.Instance.Update();
 		}
 
 		private void Update()
 		{
-			if (!DanmakuSettings.Instance.useFixedUpdate)
+			if (!DanmakuSettings.Current.useFixedUpdate)
 				Danmaku.Instance.Update();
 			Danmaku.Instance.Render();
 		}
