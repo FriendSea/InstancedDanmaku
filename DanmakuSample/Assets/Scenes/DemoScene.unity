@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09489128bc71e48c6b4cce24a53865ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.1
+  speed: 0.05
   hitEffect: {fileID: 4182899012398563061, guid: 97ec49e2c818b4db5ba6e61c0f64d9b5, type: 3}
 --- !u!4 &419658215
 Transform:
@@ -297,7 +297,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_Size: {x: 0.2, y: 0.2, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &486674914
 GameObject:
@@ -906,6 +906,7 @@ GameObject:
   - component: {fileID: 1643444898}
   - component: {fileID: 1643444899}
   - component: {fileID: 1643444900}
+  - component: {fileID: 1643444901}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -1235,6 +1236,38 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+--- !u!114 &1643444901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643444894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7935f5c22546c124e97740a03ed9a324, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletModel: {fileID: 11400000, guid: 78cb1772360a74b97847ba56d23bfd98, type: 2}
+  colors:
+  - {r: 0.32549024, g: 1, b: 0.4126578, a: 1}
+  ways: 90
+  angle: 0
+  angleDelta: 4
+  rotateSpeed: 1
+  span: 60
+  count: 0
+  loopLength: 0
+  behaviour:
+    rid: 852585555119308822
+  references:
+    version: 2
+    RefIds:
+    - rid: 852585555119308822
+      type: {class: DefaultBehaviour, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
+      data:
+        speed: 0.1
+        lifeTime: 200
 --- !u!1 &1923835850
 GameObject:
   m_ObjectHideFlags: 0

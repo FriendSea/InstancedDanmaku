@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e464f352dc3dbb945bbaddab75750b37, type: 3}
-  m_Name: StarBullet
+  m_Name: SmallEllipseBullet
   m_EditorClassIdentifier: 
   mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
-  texture: {fileID: 2800000, guid: dd31d94e4bf11b64788b929996d8a491, type: 3}
-  material: {fileID: 2100000, guid: 370dcc11519eed24584de67bef422266, type: 2}
-  scale: {x: 0.7, y: 0.7, z: 0.7}
+  texture: {fileID: 2800000, guid: 7c0d45be83cbe46aa86d21da95a5fb8c, type: 3}
+  material: {fileID: 2100000, guid: 5271a14ac5c8c4258ab43cb4d763daf6, type: 2}
+  scale: {x: 0.3, y: 0.5, z: 0.5}
   radius: 0.05
   vanishEffect: 1

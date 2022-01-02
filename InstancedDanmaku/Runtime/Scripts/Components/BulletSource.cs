@@ -26,6 +26,8 @@ namespace InstancedDanmaku
 		int loopLength = 0;
 		[SerializeReference, BulletBehaviourSelector]
 		IBulletBehaviour behaviour = new DefaultBehaviour();
+		[SerializeField]
+		UnityEngine.Events.UnityEvent onFire;
 
 		private void FixedUpdate()
 		{
@@ -73,6 +75,8 @@ namespace InstancedDanmaku
 			currentCount++;
 			angle += rotateSpeed;
 			if (angle > 360f) angle -= 360f;
+
+			onFire?.Invoke();
 		}
 	}
 }

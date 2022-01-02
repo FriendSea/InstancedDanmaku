@@ -224,5 +224,11 @@ namespace InstancedDanmaku
 				group.Dispose();
 			groups.Clear();
 		}
+
+		public static void Reset()
+		{
+			Instance.Dispose();
+			_instance = null;
+		}
 	}
 }
