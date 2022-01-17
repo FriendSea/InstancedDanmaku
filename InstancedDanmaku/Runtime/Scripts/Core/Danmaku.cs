@@ -62,7 +62,8 @@ namespace InstancedDanmaku
 		NativeArray<RaycastHit> raycastHits;
 		internal Stack<int> Unused { get; }
 
-		internal bool HasEmpty => Unused.Count > 0;
+		internal bool IsFull => Unused.Count <= 0;
+		internal bool IsEmpty => Unused.Count >= MAX_BULLETS;
 
 		internal BulletGroup(BulletModel model)
 		{
@@ -187,7 +188,7 @@ namespace InstancedDanmaku
 			foreach(var g in groups)
 			{
 				if (g.Model != model) continue;
-				if (!g.HasEmpty) continue;
+				if (g.IsFull) continue;
 				group = g;
 				break;
 			}
@@ -204,6 +205,14 @@ namespace InstancedDanmaku
 		{
 			for (int i = 0; i < groups.Count; i++)
 				groups[i].UpdateBullets();
+			for (int i = groups.Count - 1; i >= 0; i--)
+			{
+				if (groups[i].IsEmpty)
+				{
+					groups[i].Dispose();
+					groups.RemoveAt(i);
+				}
+			}
 		}
 
 		public void Render()

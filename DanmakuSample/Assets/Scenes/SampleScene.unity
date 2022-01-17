@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -254,6 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e02bb8a74af24404fab62dfe8dabd059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  danmakuSettings: {fileID: 11400000, guid: 0de2bb20a84254cb7821efe8e327ade5, type: 2}
 --- !u!4 &654510123
 Transform:
   m_ObjectHideFlags: 0
@@ -713,51 +714,25 @@ MonoBehaviour:
   - {r: 0, g: 0.29611325, b: 1, a: 1}
   - {r: 0, g: 1, b: 0.049153566, a: 1}
   ways: 36
+  angle: 0
   angleDelta: 10
   rotateSpeed: 1
   span: 0
   count: 0
+  loopLength: 0
   behaviour:
-    rid: 2940269620485423140
+    rid: 1261780151992057919
+  onFire:
+    m_PersistentCalls:
+      m_Calls: []
   references:
     version: 2
     RefIds:
-    - rid: 2940269620485423140
-      type: {class: AnimateSpeed, ns: InstancedDanmaku, asm: Assembly-CSharp}
+    - rid: 1261780151992057919
+      type: {class: DefaultBehaviour, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:
-        curve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 0.0053760083
-            outSlope: 0.0053760083
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0.021948526
-          - serializedVersion: 3
-            time: 126.70875
-            value: 0.0005057603
-            inSlope: 0.000024857465
-            outSlope: 0.000024857465
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0.3107163
-          - serializedVersion: 3
-            time: 241.0264
-            value: 0.1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
+        speed: 0.03
+        lifeTime: 600
 --- !u!1 &1916863512
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,3 +924,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.1
+  hitEffect: {fileID: 0}

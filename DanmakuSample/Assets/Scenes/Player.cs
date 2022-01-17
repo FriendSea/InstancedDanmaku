@@ -14,6 +14,7 @@ public class Player : MonoBehaviour, InstancedDanmaku.IBulletCollider
 
 	public void Collide(Bullet bullet)
 	{
+		if (hitEffect == null) return;
 		var effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
 		Destroy(effect, 0.5f);
 	}
