@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -945,6 +945,25 @@ MonoBehaviour:
   onFire:
     m_PersistentCalls:
       m_Calls: []
+  spawner:
+    bulletModel: {fileID: 11400000, guid: 026bc7663395a5c45a6258cbff53d845, type: 2}
+    colors:
+    - {r: 1, g: 0, b: 0, a: 1}
+    - {r: 0, g: 1, b: 0, a: 1}
+    - {r: 0, g: 0, b: 1, a: 1}
+    - {r: 1, g: 0, b: 1, a: 1}
+    ways: 4
+    angle: 0
+    angleDelta: 90
+    rotateSpeed: 10
+    span: 5
+    count: 0
+    loopLength: 0
+    behaviour:
+      rid: 2940269633226670579
+    onFire:
+      m_PersistentCalls:
+        m_Calls: []
   references:
     version: 2
     RefIds:
@@ -999,6 +1018,25 @@ MonoBehaviour:
   onFire:
     m_PersistentCalls:
       m_Calls: []
+  spawner:
+    bulletModel: {fileID: 11400000, guid: 026bc7663395a5c45a6258cbff53d845, type: 2}
+    colors:
+    - {r: 1, g: 0.5019608, b: 0, a: 1}
+    - {r: 0, g: 1, b: 0, a: 1}
+    - {r: 0, g: 1, b: 1, a: 1}
+    - {r: 1, g: 0, b: 1, a: 1}
+    ways: 4
+    angle: 0
+    angleDelta: 90
+    rotateSpeed: -10
+    span: 5
+    count: 0
+    loopLength: 0
+    behaviour:
+      rid: 2940269633226670580
+    onFire:
+      m_PersistentCalls:
+        m_Calls: []
   references:
     version: 2
     RefIds:
@@ -1034,6 +1072,22 @@ MonoBehaviour:
   onFire:
     m_PersistentCalls:
       m_Calls: []
+  spawner:
+    bulletModel: {fileID: 11400000, guid: 3a7f97312ebcf464f9bb4a2dc3a6d715, type: 2}
+    colors:
+    - {r: 1, g: 0, b: 0, a: 0.5019608}
+    ways: 8
+    angle: -5
+    angleDelta: 45
+    rotateSpeed: 0
+    span: 0
+    count: 20
+    loopLength: 120
+    behaviour:
+      rid: 2940269633226670599
+    onFire:
+      m_PersistentCalls:
+        m_Calls: []
   references:
     version: 2
     RefIds:
@@ -1119,6 +1173,22 @@ MonoBehaviour:
   onFire:
     m_PersistentCalls:
       m_Calls: []
+  spawner:
+    bulletModel: {fileID: 11400000, guid: 3a7f97312ebcf464f9bb4a2dc3a6d715, type: 2}
+    colors:
+    - {r: 0, g: 0, b: 1, a: 0.5019608}
+    ways: 8
+    angle: 5
+    angleDelta: 45
+    rotateSpeed: 0
+    span: 0
+    count: 20
+    loopLength: 120
+    behaviour:
+      rid: 2940269633226670599
+    onFire:
+      m_PersistentCalls:
+        m_Calls: []
   references:
     version: 2
     RefIds:
@@ -1204,6 +1274,22 @@ MonoBehaviour:
   onFire:
     m_PersistentCalls:
       m_Calls: []
+  spawner:
+    bulletModel: {fileID: 11400000, guid: 85d39de7508d245c0bb4fc4b0697e298, type: 2}
+    colors:
+    - {r: 0, g: 0, b: 1, a: 1}
+    ways: 36
+    angle: 0
+    angleDelta: 10
+    rotateSpeed: 5
+    span: 60
+    count: 0
+    loopLength: 0
+    behaviour:
+      rid: 2940269633226670581
+    onFire:
+      m_PersistentCalls:
+        m_Calls: []
   references:
     version: 2
     RefIds:
@@ -1279,6 +1365,22 @@ MonoBehaviour:
   onFire:
     m_PersistentCalls:
       m_Calls: []
+  spawner:
+    bulletModel: {fileID: 11400000, guid: 78cb1772360a74b97847ba56d23bfd98, type: 2}
+    colors:
+    - {r: 0.32549024, g: 1, b: 0.4126578, a: 1}
+    ways: 90
+    angle: 0
+    angleDelta: 4
+    rotateSpeed: 1
+    span: 60
+    count: 0
+    loopLength: 0
+    behaviour:
+      rid: 852585555119308822
+    onFire:
+      m_PersistentCalls:
+        m_Calls: []
   references:
     version: 2
     RefIds:
