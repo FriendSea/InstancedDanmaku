@@ -17,13 +17,19 @@ namespace InstancedDanmaku
 		private void FixedUpdate()
 		{
 			if (DanmakuSettings.Current.useFixedUpdate)
+			{
 				Danmaku.Instance.Update();
+				Danmaku.Instance.Colission();
+			}
 		}
 
 		private void Update()
 		{
 			if (!DanmakuSettings.Current.useFixedUpdate)
+			{
 				Danmaku.Instance.Update();
+				Danmaku.Instance.Colission();
+			}
 			Danmaku.Instance.Render();
 		}
 

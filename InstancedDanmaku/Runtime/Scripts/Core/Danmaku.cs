@@ -72,8 +72,10 @@ namespace InstancedDanmaku
 			bullets = new Bullet[MAX_BULLETS];
 			matricies = new Matrix4x4[MAX_BULLETS];
 			colors = new Vector4[MAX_BULLETS];
+
 			raycastCommands = new NativeArray<SpherecastCommand>(MAX_BULLETS, Allocator.Persistent);
 			raycastHits = new NativeArray<RaycastHit>(MAX_BULLETS, Allocator.Persistent);
+
 			Unused = new Stack<int>(Enumerable.Range(0, MAX_BULLETS));
 		}
 
@@ -84,18 +86,35 @@ namespace InstancedDanmaku
 		}
 
 		List<IBulletCollider> collisionTargets = new List<IBulletCollider>();
-		//JobHandle jobHandle;
 		internal void UpdateBullets()
 		{
-			//if (!jobHandle.IsCompleted)
-			//	jobHandle.Complete();
-			SpherecastCommand.ScheduleBatch(raycastCommands, raycastHits, 20).Complete();
-
 			var camDir = Camera.main.transform.forward.normalized;
 
 			for (int i = 0; i < bullets.Length; i++)
 			{
-				if(raycastCommands[i].radius > 0)
+				if (!bullets[i].Active && bullets[i].Used)
+				{
+					bullets[i].Used = false;
+					Unused.Push(i);
+
+					if (Model.VanishEffect)
+						Danmaku.Instance.AddBullet(DanmakuSettings.Current.vanishEffect, bullets[i].position, Quaternion.identity, bullets[i].color, DanmakuSettings.Current.vanishBulletBehaviour);
+				}
+
+				bullets[i].Update();
+				colors[i] = bullets[i].color;
+				matricies[i] = bullets[i].Active ? Matrix4x4.TRS(bullets[i].position, bullets[i].rotation, Model.Scale) : Matrix4x4.zero;
+				raycastCommands[i] = bullets[i].Used ? new SpherecastCommand(bullets[i].position - camDir * DanmakuSettings.Current.collisionDepth, Model.Radius, camDir, DanmakuSettings.Current.collisionDepth * 2f, DanmakuSettings.Current.collisionMask) : new SpherecastCommand();
+			}
+		}
+
+		public void CollisionBullets()
+		{
+			SpherecastCommand.ScheduleBatch(raycastCommands, raycastHits, 20).Complete();
+
+			for (int i = 0; i < bullets.Length; i++)
+			{
+				if (raycastCommands[i].radius > 0)
 				{
 					if (raycastHits[i].collider != null)
 					{
@@ -112,24 +131,6 @@ namespace InstancedDanmaku
 							bullets[i].Destroy();
 					}
 				}
-
-				matricies[i] = bullets[i].Active ? Matrix4x4.TRS(bullets[i].position, bullets[i].rotation, Model.Scale) : Matrix4x4.zero;
-
-				bullets[i].Update();
-				colors[i] = bullets[i].color;
-
-				if(!bullets[i].Active && bullets[i].Used)
-				{
-					bullets[i].Used = false;
-					Unused.Push(i);
-
-					if (Model.VanishEffect)
-						Danmaku.Instance.AddBullet(DanmakuSettings.Current.vanishEffect, bullets[i].position, Quaternion.identity, bullets[i].color, DanmakuSettings.Current.vanishBulletBehaviour);
-				}
-
-				raycastCommands[i] = bullets[i].Used ? new SpherecastCommand(bullets[i].position - camDir * DanmakuSettings.Current.collisionDepth, Model.Radius, camDir, DanmakuSettings.Current.collisionDepth * 2f, DanmakuSettings.Current.collisionMask) : new SpherecastCommand();
-
-				//jobHandle = SpherecastCommand.ScheduleBatch(raycastCommands, raycastHits, 20);
 			}
 		}
 
@@ -213,6 +214,12 @@ namespace InstancedDanmaku
 					groups.RemoveAt(i);
 				}
 			}
+		}
+
+		public void Colission()
+		{
+			foreach (var g in groups)
+				g.CollisionBullets();
 		}
 
 		public void Render()
