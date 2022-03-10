@@ -35,7 +35,7 @@ namespace InstancedDanmaku
 		[field: System.NonSerialized]
 		public Quaternion Rotation { get; set; } = Quaternion.identity;
 
-		Danmaku DanmakuInstance { get; set; }
+		public Danmaku DanmakuInstance { get; set; }
 
 		public BulletSpawner(Danmaku danmaku) => this.DanmakuInstance = danmaku;
 
