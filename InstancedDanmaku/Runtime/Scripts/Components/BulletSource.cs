@@ -7,7 +7,7 @@ namespace InstancedDanmaku
     public class BulletSource : MonoBehaviour
     {
 		[SerializeField]
-		BulletSpawner spawner = new BulletSpawner(Danmaku.Instance);
+		BulletSpawner spawner = new BulletSpawner();
 
 		private void FixedUpdate()
 		{

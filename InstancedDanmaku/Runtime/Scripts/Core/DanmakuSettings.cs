@@ -8,16 +8,18 @@ namespace InstancedDanmaku
 	public class DanmakuSettings : ScriptableObject
 	{
 		[SerializeField]
-		internal int collisionMask = 1;
+		internal Danmaku.Settings settings;
 		[SerializeField]
 		internal bool useFixedUpdate;
-		[SerializeField]
-		internal float collisionDepth = 1f;
-		[SerializeField]
-		internal BulletModel vanishEffect;
-		[SerializeReference, BulletBehaviourSelector]
-		internal IBulletBehaviour vanishBulletBehaviour = new VanishEffectBehaviour();
 
-		public static DanmakuSettings Current { get; set; }
+		static DanmakuSettings _current;
+		public static DanmakuSettings Current {
+			get => _current;
+			set
+			{
+				_current = value;
+				Danmaku.InstanceSetting = value.settings;
+			}
+		}
 	}
 }

@@ -12,16 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d6a16332cfe74d539ec54c240236e1c, type: 3}
   m_Name: DefaultDanmakuSetting
   m_EditorClassIdentifier: 
-  collisionMask: 1
+  settings:
+    collisionMask: 1
+    collisionDepth: 100
+    vanishEffect: {fileID: 11400000, guid: 72b73bfe93e6644879d0dccf8e7769c4, type: 2}
+    vanishBulletBehaviour:
+      rid: 7161982668861341948
   useFixedUpdate: 1
-  collisionDepth: 20
-  vanishEffect: {fileID: 11400000, guid: 72b73bfe93e6644879d0dccf8e7769c4, type: 2}
-  vanishBulletBehaviour:
-    rid: 852585555119309400
   references:
     version: 2
     RefIds:
-    - rid: 852585555119309400
+    - rid: 7161982668861341948
       type: {class: VanishEffectBehaviour, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:
         lifeTime: 20

@@ -35,9 +35,7 @@ namespace InstancedDanmaku
 		[field: System.NonSerialized]
 		public Quaternion Rotation { get; set; } = Quaternion.identity;
 
-		public Danmaku DanmakuInstance { get; set; }
-
-		public BulletSpawner(Danmaku danmaku) => this.DanmakuInstance = danmaku;
+		public Danmaku DanmakuInstance { get; set; } = null;
 
 		int currentFrame;
 		public void Update()
@@ -66,7 +64,7 @@ namespace InstancedDanmaku
 			{
 				float totalWidth = angleDelta * (ways - 1);
 				float ang = angle - totalWidth / 2f + i * angleDelta;
-				DanmakuInstance.AddBullet(bulletModel, Position, Rotation * Quaternion.Euler(ang, 90f, 0), colors[colorIndex % colors.Length], behaviour);
+				(DanmakuInstance ?? Danmaku.Instance).AddBullet(bulletModel, Position, Rotation * Quaternion.Euler(ang, 90f, 0), colors[colorIndex % colors.Length], behaviour);
 			}
 
 			colorIndex++;

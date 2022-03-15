@@ -54,6 +54,7 @@ namespace InstancedDanmaku
 		const int MAX_BULLETS = 1023;
 
 		public BulletModel Model { get; }
+		public Danmaku Parent { get; }
 
 		Bullet[] bullets;
 		Matrix4x4[] matricies;
@@ -65,9 +66,10 @@ namespace InstancedDanmaku
 		internal bool IsFull => Unused.Count <= 0;
 		internal bool IsEmpty => Unused.Count >= MAX_BULLETS;
 
-		internal BulletGroup(BulletModel model)
+		internal BulletGroup(BulletModel model, Danmaku parent)
 		{
 			this.Model = model;
+			this.Parent = parent;
 
 			bullets = new Bullet[MAX_BULLETS];
 			matricies = new Matrix4x4[MAX_BULLETS];
@@ -98,13 +100,13 @@ namespace InstancedDanmaku
 					Unused.Push(i);
 
 					if (Model.VanishEffect)
-						Danmaku.Instance.AddBullet(DanmakuSettings.Current.vanishEffect, bullets[i].position, Quaternion.identity, bullets[i].color, DanmakuSettings.Current.vanishBulletBehaviour);
+						Parent.AddBullet(Parent.CurrentSettings.vanishEffect, bullets[i].position, Quaternion.identity, bullets[i].color, Parent.CurrentSettings.vanishBulletBehaviour);
 				}
 
 				bullets[i].Update();
 				colors[i] = bullets[i].color;
 				matricies[i] = bullets[i].Active ? Matrix4x4.TRS(bullets[i].position, bullets[i].rotation, Model.Scale) : Matrix4x4.zero;
-				raycastCommands[i] = bullets[i].Used ? new SpherecastCommand(bullets[i].position - camDir * DanmakuSettings.Current.collisionDepth, Model.Radius, camDir, DanmakuSettings.Current.collisionDepth * 2f, DanmakuSettings.Current.collisionMask) : new SpherecastCommand();
+				raycastCommands[i] = bullets[i].Used ? new SpherecastCommand(bullets[i].position - camDir * Parent.CurrentSettings.collisionDepth, Model.Radius, camDir, Parent.CurrentSettings.collisionDepth * 2f, Parent.CurrentSettings.collisionMask) : new SpherecastCommand();
 			}
 		}
 
@@ -178,8 +180,27 @@ namespace InstancedDanmaku
 
 	public class Danmaku : System.IDisposable
 	{
+		[System.Serializable]
+		public class Settings
+		{
+			[SerializeField]
+			public int collisionMask = 1;
+			[SerializeField]
+			public float collisionDepth = 1f;
+			[SerializeField]
+			public BulletModel vanishEffect;
+			[SerializeReference, BulletBehaviourSelector]
+			public IBulletBehaviour vanishBulletBehaviour = new VanishEffectBehaviour();
+		}
+
+		public static Settings InstanceSetting { get; set; } = new Settings();
+
 		static Danmaku _instance = null;
-		public static Danmaku Instance => _instance ?? (_instance = new Danmaku());
+		public static Danmaku Instance => _instance ?? (_instance = new Danmaku(InstanceSetting));
+
+		public Settings CurrentSettings { get; } = null;
+
+		public Danmaku(Settings settings) => CurrentSettings = settings;
 
 		List<BulletGroup> groups = new List<BulletGroup>();
 
@@ -195,7 +216,7 @@ namespace InstancedDanmaku
 			}
 			if(group == null)
 			{
-				group = new BulletGroup(model);
+				group = new BulletGroup(model, this);
 				groups.Add(group);
 			}
 

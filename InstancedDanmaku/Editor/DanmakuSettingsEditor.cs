@@ -14,11 +14,11 @@ namespace InstancedDanmaku
             serializedObject.Update();
 
             EditorGUILayout.PropertyField(serializedObject.FindProperty("useFixedUpdate"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("collisionDepth"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("vanishEffect"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("vanishBulletBehaviour"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("settings.collisionDepth"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("settings.vanishEffect"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("settings.vanishBulletBehaviour"));
 
-            var maskproperty = serializedObject.FindProperty("collisionMask");
+            var maskproperty = serializedObject.FindProperty("settings.collisionMask");
             isOpen = EditorGUILayout.Foldout(isOpen, "CollisionMask : " + maskproperty.intValue.ToString());
             if (isOpen)
             {
@@ -53,27 +53,4 @@ namespace InstancedDanmaku
             return mask;
         }
     }
-
-    /*
-    static class DanmakuSettingsProvider
-    {
-        static Editor editor = null;
-
-        [SettingsProvider]
-        public static SettingsProvider CreateProvider()
-        {
-            var provider = new SettingsProvider("Project/InstancedDanmaku", SettingsScope.Project)
-            {
-                label = "InstancedDanmaku",
-                guiHandler = searchContxt => {
-                    if (editor == null)
-                        editor = Editor.CreateEditor(DanmakuSettings.Current);
-                    editor.OnInspectorGUI();
-                },
-            };
-
-            return provider;
-        }
-    }
-    */
 }
