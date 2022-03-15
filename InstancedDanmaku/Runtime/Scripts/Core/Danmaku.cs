@@ -249,10 +249,12 @@ namespace InstancedDanmaku
 				g.Render();
 		}
 
-		internal void DrawGizmos()
+		public void DrawGizmos()
 		{
+#if UNITY_EDITOR
 			foreach (var g in groups)
 				g.DrawGizmos();
+#endif
 		}
 
 		public void Dispose()

@@ -47,6 +47,8 @@ namespace InstancedDanmaku
 			renderer.BeginPreview(r, GUIStyle.none);
 
 			renderer.camera.farClipPlane = 100;
+			renderer.camera.orthographic = true;
+			renderer.camera.orthographicSize = Mathf.Max(Model.Scale.x, Mathf.Max(Model.Scale.y, Model.Scale.z));
 			renderer.camera.transform.position = new Vector3(0, 0, -10);
 			renderer.camera.transform.rotation = Quaternion.identity;
 			renderer.camera.clearFlags = CameraClearFlags.SolidColor;
