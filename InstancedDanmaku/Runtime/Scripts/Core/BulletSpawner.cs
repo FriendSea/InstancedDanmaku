@@ -10,21 +10,21 @@ namespace InstancedDanmaku
 		[SerializeField]
 		BulletModel bulletModel;
 		[SerializeField]
-		Color[] colors = new Color[] { Color.red };
+		public Color[] colors = new Color[] { Color.red };
 		[SerializeField]
-		int ways = 1;
+		public int ways = 1;
 		[SerializeField]
-		float angle;
+		public float angle;
 		[SerializeField]
-		float angleDelta = 30;
+		public float angleDelta = 30;
 		[SerializeField]
-		float rotateSpeed = 0;
+		public float rotateSpeed = 0;
 		[SerializeField]
-		int span = 5;
+		public int span = 5;
 		[SerializeField]
-		int count = 0;
+		public int count = 0;
 		[SerializeField]
-		int loopLength = 0;
+		public int loopLength = 0;
 		[SerializeReference, BulletBehaviourSelector]
 		IBulletBehaviour behaviour = new DefaultBehaviour();
 		[SerializeField]
@@ -34,6 +34,9 @@ namespace InstancedDanmaku
 		public Vector3 Position { get; set; }
 		[field: System.NonSerialized]
 		public Quaternion Rotation { get; set; } = Quaternion.identity;
+
+		public BulletModel Model => bulletModel;
+		public IBulletBehaviour Behaviour => behaviour;
 
 		public Danmaku DanmakuInstance { get; set; } = null;
 
