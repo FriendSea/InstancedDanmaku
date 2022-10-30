@@ -11,7 +11,8 @@ namespace InstancedDanmaku
 
 		public void UpdateBullet(ref Bullet bullet)
 		{
-			bullet.velocity = bullet.rotation * Vector3.forward * curve.Evaluate(bullet.CurrentFrame);
+			var delta = curve.Evaluate(bullet.CurrentFrame) - curve.Evaluate(Mathf.Max(bullet.CurrentFrame - 1, 0));
+			bullet.velocity += bullet.rotation * Vector3.forward * delta;
 			if (bullet.CurrentFrame >= curve[curve.length - 1].time)
 				bullet.Destroy();
 		}

@@ -16,7 +16,8 @@ namespace InstancedDanmaku
 
 		public void UpdateBullet(ref Bullet bullet)
 		{
-			bullet.rotation = Quaternion.Normalize(bullet.rotation * Quaternion.Euler(curve.Evaluate(bullet.CurrentFrame), 0, 0));
+			var delta = curve.Evaluate(bullet.CurrentFrame) - curve.Evaluate(Mathf.Max(0, bullet.CurrentFrame - 1));
+			bullet.rotation = Quaternion.Normalize(bullet.rotation * Quaternion.Euler(delta, 0, 0));
 			bullet.velocity = bullet.rotation * Vector3.forward * speed;
 			if (bullet.CurrentFrame >= curve[curve.length - 1].time)
 				bullet.Destroy();
