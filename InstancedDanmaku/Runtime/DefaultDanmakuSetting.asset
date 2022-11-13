@@ -17,12 +17,12 @@ MonoBehaviour:
     collisionDepth: 100
     vanishEffect: {fileID: 11400000, guid: 72b73bfe93e6644879d0dccf8e7769c4, type: 2}
     vanishBulletBehaviour:
-      rid: 7161982668861341948
+      rid: 6552513238185804641
   useFixedUpdate: 1
   references:
     version: 2
     RefIds:
-    - rid: 7161982668861341948
+    - rid: 6552513238185804641
       type: {class: VanishEffectBehaviour, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:
         lifeTime: 20

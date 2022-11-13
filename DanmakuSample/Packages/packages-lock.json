@@ -208,7 +208,7 @@
       "url": "https://packages.unity.com"
     },
     "friendsea.instanceddanmaku": {
-      "version": "file:../../InstancedDanmaku",
+      "version": "file:C:/Users/frien/Documents/InstancedDanmaku/InstancedDanmaku",
       "depth": 0,
       "source": "local",
       "dependencies": {}

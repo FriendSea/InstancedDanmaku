@@ -1,20 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Burst;
 
 namespace InstancedDanmaku
 {
 	public class AnimateSpeed : IBulletBehaviour
 	{
 		[SerializeField]
-		AnimationCurve curve;
+		FlexibleCurve curve;
 
 		public void UpdateBullet(ref Bullet bullet)
 		{
-			var delta = curve.Evaluate(bullet.CurrentFrame) - curve.Evaluate(Mathf.Max(bullet.CurrentFrame - 1, 0));
-			bullet.velocity += bullet.rotation * Vector3.forward * delta;
-			if (bullet.CurrentFrame >= curve[curve.length - 1].time)
-				bullet.Destroy();
+			bullet.velocity += bullet.rotation * Vector3.forward * curve.GetTangent(bullet.CurrentFrame);
 		}
 	}
 }

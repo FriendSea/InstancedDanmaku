@@ -28,5 +28,10 @@ namespace InstancedDanmaku
 				spawner.Update();
 			}
 		}
+
+		private void OnDrawGizmosSelected()
+		{
+			spawner.DrawGizmos();
+		}
 	}
 }

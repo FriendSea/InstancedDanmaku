@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -927,40 +927,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7935f5c22546c124e97740a03ed9a324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletModel: {fileID: 11400000, guid: 026bc7663395a5c45a6258cbff53d845, type: 2}
-  colors:
-  - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 0, g: 1, b: 0, a: 1}
-  - {r: 0, g: 0, b: 1, a: 1}
-  - {r: 1, g: 0, b: 1, a: 1}
-  ways: 4
-  angle: 0
-  angleDelta: 90
-  rotateSpeed: 10
-  span: 5
-  count: 0
-  loopLength: 0
-  behaviour:
-    rid: 2940269633226670579
-  onFire:
-    m_PersistentCalls:
-      m_Calls: []
   spawner:
-    bulletModel: {fileID: 11400000, guid: 026bc7663395a5c45a6258cbff53d845, type: 2}
-    colors:
-    - {r: 1, g: 0, b: 0, a: 1}
-    - {r: 0, g: 1, b: 0, a: 1}
-    - {r: 0, g: 0, b: 1, a: 1}
-    - {r: 1, g: 0, b: 1, a: 1}
+    loopLength: 0
+    startSpeed:
+      difficultySwitch: 0
+      isCurve: 0
+      easy: 1
+      normal: 0.1
+      hard: 3
+      lunatic: 4
+      easyCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      normalCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      hardCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      lunaticCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
     ways: 4
     angle: 0
     angleDelta: 90
     rotateSpeed: 10
     span: 5
     count: 0
-    loopLength: 0
     behaviour:
       rid: 2940269633226670579
+    bulletModel: {fileID: 11400000, guid: 026bc7663395a5c45a6258cbff53d845, type: 2}
+    colors:
+    - {r: 1, g: 0, b: 0, a: 1}
+    - {r: 0, g: 1, b: 0, a: 1}
+    - {r: 0, g: 0, b: 1, a: 1}
+    - {r: 1, g: 0, b: 1, a: 1}
     onFire:
       m_PersistentCalls:
         m_Calls: []
@@ -970,8 +983,8 @@ MonoBehaviour:
     - rid: 2940269633226670579
       type: {class: DefaultBehaviour, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:
-        speed: 0.1
         lifeTime: 200
+        behaviours: []
 --- !u!4 &1643444896
 Transform:
   m_ObjectHideFlags: 0
@@ -1000,40 +1013,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7935f5c22546c124e97740a03ed9a324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletModel: {fileID: 11400000, guid: 026bc7663395a5c45a6258cbff53d845, type: 2}
-  colors:
-  - {r: 1, g: 0.5019608, b: 0, a: 1}
-  - {r: 0, g: 1, b: 0, a: 1}
-  - {r: 0, g: 1, b: 1, a: 1}
-  - {r: 1, g: 0, b: 1, a: 1}
-  ways: 4
-  angle: 0
-  angleDelta: 90
-  rotateSpeed: -10
-  span: 5
-  count: 0
-  loopLength: 0
-  behaviour:
-    rid: 2940269633226670580
-  onFire:
-    m_PersistentCalls:
-      m_Calls: []
   spawner:
-    bulletModel: {fileID: 11400000, guid: 026bc7663395a5c45a6258cbff53d845, type: 2}
-    colors:
-    - {r: 1, g: 0.5019608, b: 0, a: 1}
-    - {r: 0, g: 1, b: 0, a: 1}
-    - {r: 0, g: 1, b: 1, a: 1}
-    - {r: 1, g: 0, b: 1, a: 1}
+    loopLength: 0
+    startSpeed:
+      difficultySwitch: 0
+      isCurve: 0
+      easy: 0
+      normal: 0.1
+      hard: 0
+      lunatic: 0
+      easyCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      normalCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      hardCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      lunaticCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
     ways: 4
     angle: 0
     angleDelta: 90
     rotateSpeed: -10
     span: 5
     count: 0
-    loopLength: 0
     behaviour:
       rid: 2940269633226670580
+    bulletModel: {fileID: 11400000, guid: 026bc7663395a5c45a6258cbff53d845, type: 2}
+    colors:
+    - {r: 1, g: 0.5019608, b: 0, a: 1}
+    - {r: 0, g: 1, b: 0, a: 1}
+    - {r: 0, g: 1, b: 1, a: 1}
+    - {r: 1, g: 0, b: 1, a: 1}
     onFire:
       m_PersistentCalls:
         m_Calls: []
@@ -1043,8 +1069,8 @@ MonoBehaviour:
     - rid: 2940269633226670580
       type: {class: DefaultBehaviour, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:
-        speed: 0.1
         lifeTime: 200
+        behaviours: []
 --- !u!114 &1643444898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1057,95 +1083,114 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7935f5c22546c124e97740a03ed9a324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletModel: {fileID: 11400000, guid: 3a7f97312ebcf464f9bb4a2dc3a6d715, type: 2}
-  colors:
-  - {r: 1, g: 0, b: 0, a: 0.5019608}
-  ways: 8
-  angle: -5
-  angleDelta: 45
-  rotateSpeed: 0
-  span: 0
-  count: 20
-  loopLength: 120
-  behaviour:
-    rid: 2940269633226670599
-  onFire:
-    m_PersistentCalls:
-      m_Calls: []
   spawner:
-    bulletModel: {fileID: 11400000, guid: 3a7f97312ebcf464f9bb4a2dc3a6d715, type: 2}
-    colors:
-    - {r: 1, g: 0, b: 0, a: 0.5019608}
+    loopLength: 120
+    startSpeed:
+      difficultySwitch: 0
+      isCurve: 0
+      easy: 0
+      normal: 0.2
+      hard: 0
+      lunatic: 0
+      easyCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      normalCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      hardCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      lunaticCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
     ways: 8
     angle: -5
     angleDelta: 45
     rotateSpeed: 0
     span: 0
     count: 20
-    loopLength: 120
     behaviour:
-      rid: 2940269633226670599
+      rid: 6552513238185804238
+    bulletModel: {fileID: 11400000, guid: 3a7f97312ebcf464f9bb4a2dc3a6d715, type: 2}
+    colors:
+    - {r: 1, g: 0, b: 0, a: 0.5019608}
     onFire:
       m_PersistentCalls:
         m_Calls: []
   references:
     version: 2
     RefIds:
-    - rid: 2940269633226670599
+    - rid: 6552513238185804238
+      type: {class: DefaultBehaviour, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
+      data:
+        lifeTime: 1000
+        behaviours:
+        - rid: 6552513238185804239
+    - rid: 6552513238185804239
       type: {class: CruvedBullet, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:
-        speed: 0.2
         curve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 10.833333
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 40
-            value: 10
-            inSlope: -0.010389626
-            outSlope: -0.010389626
-            tangentMode: 34
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 67.5
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 200
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
+          difficultySwitch: 0
+          isCurve: 1
+          easy: 0
+          normal: 0
+          hard: 0
+          lunatic: 0
+          easyCurve:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          normalCurve:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 0
+              inSlope: 6
+              outSlope: 6
+              tangentMode: 34
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0.33333334
+            - serializedVersion: 3
+              time: 60
+              value: 360
+              inSlope: 6
+              outSlope: 6
+              tangentMode: 34
+              weightedMode: 0
+              inWeight: 0.33333334
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          hardCurve:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          lunaticCurve:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
 --- !u!114 &1643444899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1158,95 +1203,114 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7935f5c22546c124e97740a03ed9a324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletModel: {fileID: 11400000, guid: 3a7f97312ebcf464f9bb4a2dc3a6d715, type: 2}
-  colors:
-  - {r: 0, g: 0, b: 1, a: 0.5019608}
-  ways: 8
-  angle: 5
-  angleDelta: 45
-  rotateSpeed: 0
-  span: 0
-  count: 20
-  loopLength: 120
-  behaviour:
-    rid: 2940269633226670599
-  onFire:
-    m_PersistentCalls:
-      m_Calls: []
   spawner:
-    bulletModel: {fileID: 11400000, guid: 3a7f97312ebcf464f9bb4a2dc3a6d715, type: 2}
-    colors:
-    - {r: 0, g: 0, b: 1, a: 0.5019608}
+    loopLength: 120
+    startSpeed:
+      difficultySwitch: 0
+      isCurve: 0
+      easy: 0
+      normal: 0.2
+      hard: 0
+      lunatic: 0
+      easyCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      normalCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      hardCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      lunaticCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
     ways: 8
     angle: 5
     angleDelta: 45
     rotateSpeed: 0
     span: 0
     count: 20
-    loopLength: 120
     behaviour:
-      rid: 2940269633226670599
+      rid: 6552513238185804666
+    bulletModel: {fileID: 11400000, guid: 3a7f97312ebcf464f9bb4a2dc3a6d715, type: 2}
+    colors:
+    - {r: 0, g: 0, b: 1, a: 0.5019608}
     onFire:
       m_PersistentCalls:
         m_Calls: []
   references:
     version: 2
     RefIds:
-    - rid: 2940269633226670599
+    - rid: 6552513238185804666
+      type: {class: DefaultBehaviour, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
+      data:
+        lifeTime: 1000
+        behaviours:
+        - rid: 6552513238185804667
+    - rid: 6552513238185804667
       type: {class: CruvedBullet, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:
-        speed: 0.2
         curve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 10.833333
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 40
-            value: -10
-            inSlope: 0.010389626
-            outSlope: 0.010389626
-            tangentMode: 34
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 67.5
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 200
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
+          difficultySwitch: 0
+          isCurve: 1
+          easy: 0
+          normal: 0
+          hard: 0
+          lunatic: 0
+          easyCurve:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          normalCurve:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 0
+              inSlope: -12
+              outSlope: -12
+              tangentMode: 34
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0.33333334
+            - serializedVersion: 3
+              time: 60
+              value: -720
+              inSlope: -12
+              outSlope: -12
+              tangentMode: 34
+              weightedMode: 0
+              inWeight: 0.33333334
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          hardCurve:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          lunaticCurve:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
 --- !u!114 &1643444900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1259,85 +1323,123 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7935f5c22546c124e97740a03ed9a324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletModel: {fileID: 11400000, guid: 85d39de7508d245c0bb4fc4b0697e298, type: 2}
-  colors:
-  - {r: 0, g: 0, b: 1, a: 1}
-  ways: 36
-  angle: 0
-  angleDelta: 10
-  rotateSpeed: 5
-  span: 60
-  count: 0
-  loopLength: 0
-  behaviour:
-    rid: 2940269633226670581
-  onFire:
-    m_PersistentCalls:
-      m_Calls: []
   spawner:
-    bulletModel: {fileID: 11400000, guid: 85d39de7508d245c0bb4fc4b0697e298, type: 2}
-    colors:
-    - {r: 0, g: 0, b: 1, a: 1}
+    loopLength: 0
+    startSpeed:
+      difficultySwitch: 0
+      isCurve: 0
+      easy: 0
+      normal: 0.1
+      hard: 0
+      lunatic: 0
+      easyCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      normalCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      hardCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      lunaticCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
     ways: 36
     angle: 0
     angleDelta: 10
     rotateSpeed: 5
     span: 60
     count: 0
-    loopLength: 0
     behaviour:
-      rid: 2940269633226670581
+      rid: 6552513238185804694
+    bulletModel: {fileID: 11400000, guid: 85d39de7508d245c0bb4fc4b0697e298, type: 2}
+    colors:
+    - {r: 0, g: 0, b: 1, a: 1}
     onFire:
       m_PersistentCalls:
         m_Calls: []
   references:
     version: 2
     RefIds:
-    - rid: 2940269633226670581
+    - rid: 6552513238185804694
+      type: {class: DefaultBehaviour, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
+      data:
+        lifeTime: 1000
+        behaviours:
+        - rid: 6552513238185804695
+    - rid: 6552513238185804695
       type: {class: AnimateSpeed, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:
         curve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0.1
-            inSlope: -0.0008578808
-            outSlope: -0.0008578808
-            tangentMode: 34
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 116.566315
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 221.2381
-            value: 0.2
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 570.937
-            value: 0.2
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
+          difficultySwitch: 0
+          isCurve: 1
+          easy: 0
+          normal: 0.3
+          hard: 0
+          lunatic: 0
+          easyCurve:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          normalCurve:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 0.1
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            - serializedVersion: 3
+              time: 56.876606
+              value: -0.0005763725
+              inSlope: 0.00011393219
+              outSlope: 0.00011393219
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0.33333334
+              outWeight: 0.33333334
+            - serializedVersion: 3
+              time: 100
+              value: 0.2
+              inSlope: 0.003297503
+              outSlope: 0.003297503
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0.030172348
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          hardCurve:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          lunaticCurve:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
 --- !u!114 &1643444901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1350,34 +1452,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7935f5c22546c124e97740a03ed9a324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletModel: {fileID: 11400000, guid: 78cb1772360a74b97847ba56d23bfd98, type: 2}
-  colors:
-  - {r: 0.32549024, g: 1, b: 0.4126578, a: 1}
-  ways: 90
-  angle: 0
-  angleDelta: 4
-  rotateSpeed: 1
-  span: 60
-  count: 0
-  loopLength: 0
-  behaviour:
-    rid: 852585555119308822
-  onFire:
-    m_PersistentCalls:
-      m_Calls: []
   spawner:
-    bulletModel: {fileID: 11400000, guid: 78cb1772360a74b97847ba56d23bfd98, type: 2}
-    colors:
-    - {r: 0.32549024, g: 1, b: 0.4126578, a: 1}
+    loopLength: 0
+    startSpeed:
+      difficultySwitch: 0
+      isCurve: 0
+      easy: 0
+      normal: 0.1
+      hard: 0
+      lunatic: 0
+      easyCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      normalCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      hardCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      lunaticCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
     ways: 90
     angle: 0
     angleDelta: 4
     rotateSpeed: 1
     span: 60
     count: 0
-    loopLength: 0
     behaviour:
       rid: 852585555119308822
+    bulletModel: {fileID: 11400000, guid: 78cb1772360a74b97847ba56d23bfd98, type: 2}
+    colors:
+    - {r: 0.32549024, g: 1, b: 0.4126578, a: 1}
     onFire:
       m_PersistentCalls:
         m_Calls: []
@@ -1387,8 +1505,8 @@ MonoBehaviour:
     - rid: 852585555119308822
       type: {class: DefaultBehaviour, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:
-        speed: 0.1
         lifeTime: 200
+        behaviours: []
 --- !u!1 &1923835850
 GameObject:
   m_ObjectHideFlags: 0

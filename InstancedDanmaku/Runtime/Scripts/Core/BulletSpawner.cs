@@ -5,12 +5,12 @@ using UnityEngine;
 namespace InstancedDanmaku
 {
 	[System.Serializable]
-    public class BulletSpawner
-    {
+	public class BulletSpawner
+	{
 		[SerializeField]
-		BulletModel bulletModel;
+		public int loopLength = 0;
 		[SerializeField]
-		public Color[] colors = new Color[] { Color.red };
+		public FlexibleValue startSpeed;
 		[SerializeField]
 		public int ways = 1;
 		[SerializeField]
@@ -23,10 +23,12 @@ namespace InstancedDanmaku
 		public int span = 5;
 		[SerializeField]
 		public int count = 0;
-		[SerializeField]
-		public int loopLength = 0;
 		[SerializeReference, BulletBehaviourSelector]
 		IBulletBehaviour behaviour = new DefaultBehaviour();
+		[SerializeField]
+		BulletModel bulletModel;
+		[SerializeField]
+		public Color[] colors = new Color[] { Color.red };
 		[SerializeField]
 		UnityEngine.Events.UnityEvent onFire;
 
@@ -63,12 +65,8 @@ namespace InstancedDanmaku
 		{
 			if (count > 0 && currentCount >= count) return;
 
-			for (int i = 0; i < ways; i++)
-			{
-				float totalWidth = angleDelta * (ways - 1);
-				float ang = angle - totalWidth / 2f + i * angleDelta;
-				(DanmakuInstance ?? Danmaku.Instance).AddBullet(bulletModel, Position, Rotation * Quaternion.Euler(ang, 90f, 0), colors[colorIndex % colors.Length], behaviour);
-			}
+			foreach (var ang in GetRotations())
+				(DanmakuInstance ?? Danmaku.Instance).AddBullet(bulletModel, Position, ang, colors[colorIndex % colors.Length], behaviour, ang * Vector3.forward * startSpeed.GetValue(currentFrame));
 
 			colorIndex++;
 			currentCount++;
@@ -76,6 +74,37 @@ namespace InstancedDanmaku
 			if (angle > 360f) angle -= 360f;
 
 			onFire?.Invoke();
+		}
+
+		IEnumerable<Quaternion> GetRotations()
+		{
+			for (int i = 0; i < ways; i++)
+			{
+				float totalWidth = angleDelta * (ways - 1);
+				float ang = angle - totalWidth / 2f + i * angleDelta;
+				yield return Rotation * Quaternion.Euler(ang, 90f, 0);
+			}
+		}
+
+		public void DrawGizmos()
+		{
+#if UNITY_EDITOR
+			Gizmos.color = Color.red;
+
+			foreach(var ang in GetRotations())
+			{
+				var bullet = new Bullet(Position, ang, ang * Vector3.forward * startSpeed.GetValue(0), Vector4.zero, Behaviour);
+				var beforepos = Position;
+				for (int i = 0; i < 1000; i++)
+				{
+					bullet.Update();
+					if (!bullet.Active) break;
+
+					Gizmos.DrawLine(beforepos, bullet.position);
+					beforepos = bullet.position;
+				}
+			}
+#endif
 		}
 	}
 }

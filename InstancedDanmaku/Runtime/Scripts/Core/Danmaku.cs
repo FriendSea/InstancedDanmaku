@@ -16,6 +16,8 @@ namespace InstancedDanmaku
 		public bool Active { get; private set; }
 		internal bool Used { get; set; }
 
+		public delegate void BulletProcess(ref Bullet bullet);
+
 		internal Bullet(Vector3 position, Quaternion rotation, Vector3 velocity, Vector4 color, IBulletBehaviour behaviour)
 		{
 			this.behaviour = behaviour;
@@ -81,10 +83,10 @@ namespace InstancedDanmaku
 			Unused = new Stack<int>(Enumerable.Range(0, MAX_BULLETS));
 		}
 
-		internal void AddNewBullet(Vector3 position, Quaternion rotation, Color color, IBulletBehaviour behaviour)
+		internal void AddNewBullet(Vector3 position, Quaternion rotation, Color color, IBulletBehaviour behaviour, Vector3 velocity = default)
 		{
 			var index = Unused.Pop();
-			bullets[index] = new Bullet(position, rotation, Vector3.zero, new Vector4(color.r, color.g, color.b, color.a), behaviour);
+			bullets[index] = new Bullet(position, rotation, velocity, new Vector4(color.r, color.g, color.b, color.a), behaviour);
 		}
 
 		List<IBulletCollider> collisionTargets = new List<IBulletCollider>();
@@ -204,7 +206,7 @@ namespace InstancedDanmaku
 
 		List<BulletGroup> groups = new List<BulletGroup>();
 
-		public void AddBullet(BulletModel model, Vector3 position, Quaternion rotation, Color color, IBulletBehaviour behaviour)
+		public void AddBullet(BulletModel model, Vector3 position, Quaternion rotation, Color color, IBulletBehaviour behaviour, Vector3 velocity = default)
 		{
 			BulletGroup group = null;
 			foreach(var g in groups)
@@ -220,7 +222,7 @@ namespace InstancedDanmaku
 				groups.Add(group);
 			}
 
-			group.AddNewBullet(position, rotation, color, behaviour);
+			group.AddNewBullet(position, rotation, color, behaviour, velocity);
 		}
 
 		public void Update()

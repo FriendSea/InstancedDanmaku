@@ -8,16 +8,16 @@ namespace InstancedDanmaku
 	class DefaultBehaviour : IBulletBehaviour
 	{
 		[SerializeField]
-		float speed = 1f;
-		[SerializeField]
-		int lifeTime = 600;
+		int lifeTime = 1000;
+		[SerializeReference, BulletBehaviourSelector]
+		IBulletBehaviour[] behaviours;
 
 		public bool VanishEffect => true;
 
 		public void UpdateBullet(ref Bullet bullet)
 		{
-			if (bullet.CurrentFrame == 0)
-				bullet.velocity = bullet.rotation * Vector3.forward * speed;
+			foreach (var b in behaviours)
+				b.UpdateBullet(ref bullet);
 			if (bullet.CurrentFrame > lifeTime)
 				bullet.Destroy();
 		}
