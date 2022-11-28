@@ -12,7 +12,7 @@ namespace InstancedDanmaku
 		[SerializeField]
 		public FlexibleValue startSpeed;
 		[SerializeField]
-		public int ways = 1;
+		public FlexibleValue ways = new FlexibleValue(1);
 		[SerializeField]
 		public float angle;
 		[SerializeField]
@@ -65,8 +65,13 @@ namespace InstancedDanmaku
 		{
 			if (count > 0 && currentCount >= count) return;
 
-			foreach (var ang in GetRotations())
-				(DanmakuInstance ?? Danmaku.Instance).AddBullet(bulletModel, Position, ang, colors[colorIndex % colors.Length], behaviour, ang * Vector3.forward * startSpeed.GetValue(currentFrame));
+			for (int i = 0; i < ways.GetInt(currentFrame); i++)
+			{
+				float totalWidth = angleDelta * (ways.GetInt(currentFrame) - 1);
+				float ang = angle - totalWidth / 2f + i * angleDelta;
+				var rot = Rotation * Quaternion.Euler(ang, 90f, 0);
+				(DanmakuInstance ?? Danmaku.Instance).AddBullet(bulletModel, Position, rot, colors[colorIndex % colors.Length], behaviour, rot * Vector3.forward * startSpeed.GetValue(currentFrame));
+			}
 
 			colorIndex++;
 			currentCount++;
@@ -78,9 +83,9 @@ namespace InstancedDanmaku
 
 		IEnumerable<Quaternion> GetRotations()
 		{
-			for (int i = 0; i < ways; i++)
+			for (int i = 0; i < ways.GetInt(currentFrame); i++)
 			{
-				float totalWidth = angleDelta * (ways - 1);
+				float totalWidth = angleDelta * (ways.GetInt(currentFrame) - 1);
 				float ang = angle - totalWidth / 2f + i * angleDelta;
 				yield return Rotation * Quaternion.Euler(ang, 90f, 0);
 			}
@@ -89,6 +94,7 @@ namespace InstancedDanmaku
 		public void DrawGizmos()
 		{
 #if UNITY_EDITOR
+			/*
 			Gizmos.color = Color.red;
 
 			foreach(var ang in GetRotations())
@@ -104,6 +110,7 @@ namespace InstancedDanmaku
 					beforepos = bullet.position;
 				}
 			}
+			*/
 #endif
 		}
 	}

@@ -8,7 +8,7 @@ namespace InstancedDanmaku
 	class CruvedBullet : IBulletBehaviour
 	{
 		[SerializeField]
-		FlexibleCurve curve;
+		FlexibleValue curve = FlexibleValue.Curve(180);
 
 		public bool VanishEffect => true;
 

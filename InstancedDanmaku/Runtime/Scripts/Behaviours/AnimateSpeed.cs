@@ -8,11 +8,11 @@ namespace InstancedDanmaku
 	public class AnimateSpeed : IBulletBehaviour
 	{
 		[SerializeField]
-		FlexibleCurve curve;
+		FlexibleValue curve = FlexibleValue.Curve(10);
 
 		public void UpdateBullet(ref Bullet bullet)
 		{
-			bullet.velocity += bullet.rotation * Vector3.forward * curve.GetTangent(bullet.CurrentFrame);
+			bullet.velocity = bullet.rotation * Vector3.forward * curve.GetTangent(bullet.CurrentFrame);
 		}
 	}
 }

@@ -2,77 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("InstancedDanmaku.Editor")]
+
 namespace InstancedDanmaku
 {
 	[System.Serializable]
-	public struct FlexibleCurve
+	public class FlexibleValueWithoutModfier
 	{
 		[SerializeField]
-		bool difficultySwitch;
+		protected bool difficultySwitch;
+		[SerializeField]
+		protected bool isCurve;
 
 		[SerializeField]
-		AnimationCurve easyCurve;
+		protected float easy;
 		[SerializeField]
-		AnimationCurve normalCurve;
+		protected float normal;
 		[SerializeField]
-		AnimationCurve hardCurve;
+		protected float hard;
 		[SerializeField]
-		AnimationCurve lunaticCurve;
-
-		public float GetValue(int frame)
-		{
-			if (difficultySwitch)
-			{
-				switch (DanmakuSettings.CurrentDifficulty)
-				{
-					case DanmakuSettings.Difficulty.Easy:
-						return easyCurve.Evaluate(frame);
-					case DanmakuSettings.Difficulty.Normal:
-						return normalCurve.Evaluate(frame);
-					case DanmakuSettings.Difficulty.Hard:
-						return hardCurve.Evaluate(frame);
-					case DanmakuSettings.Difficulty.Lunatic:
-						return lunaticCurve.Evaluate(frame);
-				}
-			}
-			return normalCurve.Evaluate(frame);
-		}
-
-		public float GetTangent(int frame)
-		{
-			return GetValue(frame) - GetValue(Mathf.Max(frame - 1, 0));
-		}
-
-		public int GetInt(int frame) => Mathf.RoundToInt(GetValue(frame));
-	}
-
-	[System.Serializable]
-	public struct FlexibleValue
-	{
-		[SerializeField]
-		bool difficultySwitch;
-		[SerializeField]
-		bool isCurve;
+		protected float lunatic;
 
 		[SerializeField]
-		float easy;
+		protected AnimationCurve easyCurve;
 		[SerializeField]
-		float normal;
+		protected AnimationCurve normalCurve;
 		[SerializeField]
-		float hard;
+		protected AnimationCurve hardCurve;
 		[SerializeField]
-		float lunatic;
+		protected AnimationCurve lunaticCurve;
 
-		[SerializeField]
-		AnimationCurve easyCurve;
-		[SerializeField]
-		AnimationCurve normalCurve;
-		[SerializeField]
-		AnimationCurve hardCurve;
-		[SerializeField]
-		AnimationCurve lunaticCurve;
-
-		public float GetValue(int frame)
+		public virtual float GetValue(int frame)
 		{
 			if (difficultySwitch)
 			{
@@ -98,10 +58,44 @@ namespace InstancedDanmaku
 		}
 
 		public int GetInt(int frame) => Mathf.RoundToInt(GetValue(frame));
+	}
 
-		public static FlexibleValue Curve => new FlexibleValue() { 
-			isCurve = true,
-			normalCurve = new AnimationCurve(new Keyframe(0,0), new Keyframe(100,1)),
-		};
+	[System.Serializable]
+	public class RandomModifier : FlexibleValueWithoutModfier, FlexibleValue.IModifier
+	{
+		public float ModifyValue(float original, int frame) {
+			var val = GetValue(frame);
+			return original + Random.Range(-val, +val);
+		}
+	}
+
+	[System.Serializable]
+	public class FlexibleValue : FlexibleValueWithoutModfier
+	{
+		public interface IModifier
+		{
+			public float ModifyValue(float original, int frame);
+		}
+
+		[SerializeReference]
+		internal IModifier[] modifiers;
+
+		public override float GetValue(int frame)
+		{
+			var val = base.GetValue(frame);
+			foreach (var mod in modifiers)
+				val = mod.ModifyValue(val, frame);
+			return val;
+		}
+
+		public FlexibleValue(float value, int frame = 100)
+		{
+			isCurve = difficultySwitch = false;
+			easy = normal = hard = lunatic = value;
+			easyCurve = normalCurve = hardCurve = lunaticCurve = AnimationCurve.Linear(0, 0, frame, value);
+		}
+
+		public static FlexibleValue Curve(float value) =>
+			new FlexibleValue(value, 100) { isCurve = true };
 	}
 }
