@@ -929,6 +929,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawner:
     loopLength: 0
+    span: 5
+    count: 0
     startSpeed:
       difficultySwitch: 0
       isCurve: 0
@@ -1065,13 +1067,145 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       modifiers: []
-    angle: 0
-    angleDelta: 90
-    rotateSpeed: 10
-    span: 5
-    count: 0
+    angle:
+      difficultySwitch: 0
+      isCurve: 0
+      easy: 0
+      normal: 0
+      hard: 0
+      lunatic: 0
+      easyCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      normalCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      hardCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      lunaticCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      modifiers:
+      - rid: 6552513557796750137
+    subtendAngle:
+      difficultySwitch: 0
+      isCurve: 0
+      easy: 30
+      normal: 90
+      hard: 30
+      lunatic: 30
+      easyCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.3
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 100
+          value: 30
+          inSlope: 0.3
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      normalCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.3
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 100
+          value: 30
+          inSlope: 0.3
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      hardCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.3
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 100
+          value: 30
+          inSlope: 0.3
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      lunaticCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.3
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 100
+          value: 30
+          inSlope: 0.3
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      modifiers: []
     behaviour:
-      rid: 2940269633226670579
+      rid: 6552513557796749828
     bulletModel: {fileID: 11400000, guid: 026bc7663395a5c45a6258cbff53d845, type: 2}
     colors:
     - {r: 1, g: 0, b: 0, a: 1}
@@ -1084,11 +1218,44 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 2940269633226670579
+    - rid: 6552513557796749828
       type: {class: DefaultBehaviour, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:
         lifeTime: 200
         behaviours: []
+    - rid: 6552513557796750137
+      type: {class: AddDelta, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
+      data:
+        difficultySwitch: 0
+        isCurve: 0
+        easy: 0
+        normal: 2
+        hard: 0
+        lunatic: 0
+        easyCurve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        normalCurve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        hardCurve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        lunaticCurve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
 --- !u!4 &1643444896
 Transform:
   m_ObjectHideFlags: 0
@@ -1119,6 +1286,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawner:
     loopLength: 0
+    span: 5
+    count: 0
     startSpeed:
       difficultySwitch: 0
       isCurve: 0
@@ -1255,13 +1424,145 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       modifiers: []
-    angle: 0
-    angleDelta: 90
-    rotateSpeed: -10
-    span: 5
-    count: 0
+    angle:
+      difficultySwitch: 0
+      isCurve: 0
+      easy: 0
+      normal: 0
+      hard: 0
+      lunatic: 0
+      easyCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      normalCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      hardCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      lunaticCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      modifiers:
+      - rid: 6552513557796750136
+    subtendAngle:
+      difficultySwitch: 0
+      isCurve: 0
+      easy: 30
+      normal: 90
+      hard: 30
+      lunatic: 30
+      easyCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.3
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 100
+          value: 30
+          inSlope: 0.3
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      normalCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.3
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 100
+          value: 30
+          inSlope: 0.3
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      hardCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.3
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 100
+          value: 30
+          inSlope: 0.3
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      lunaticCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.3
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 100
+          value: 30
+          inSlope: 0.3
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      modifiers: []
     behaviour:
-      rid: 2940269633226670580
+      rid: 6552513557796749849
     bulletModel: {fileID: 11400000, guid: 026bc7663395a5c45a6258cbff53d845, type: 2}
     colors:
     - {r: 1, g: 0.5019608, b: 0, a: 1}
@@ -1274,11 +1575,44 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 2940269633226670580
+    - rid: 6552513557796749849
       type: {class: DefaultBehaviour, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:
         lifeTime: 200
         behaviours: []
+    - rid: 6552513557796750136
+      type: {class: AddDelta, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
+      data:
+        difficultySwitch: 0
+        isCurve: 0
+        easy: 0
+        normal: -2
+        hard: 0
+        lunatic: 0
+        easyCurve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        normalCurve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        hardCurve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        lunaticCurve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
 --- !u!114 &1643444898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1293,6 +1627,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawner:
     loopLength: 120
+    span: 0
+    count: 20
     startSpeed:
       difficultySwitch: 0
       isCurve: 0
@@ -1429,13 +1765,144 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       modifiers: []
-    angle: -5
-    angleDelta: 45
-    rotateSpeed: 0
-    span: 0
-    count: 20
+    angle:
+      difficultySwitch: 0
+      isCurve: 0
+      easy: 0
+      normal: -5
+      hard: 0
+      lunatic: 0
+      easyCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      normalCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      hardCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      lunaticCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      modifiers: []
+    subtendAngle:
+      difficultySwitch: 0
+      isCurve: 0
+      easy: 30
+      normal: 45
+      hard: 30
+      lunatic: 30
+      easyCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.3
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 100
+          value: 30
+          inSlope: 0.3
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      normalCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.3
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 100
+          value: 30
+          inSlope: 0.3
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      hardCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.3
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 100
+          value: 30
+          inSlope: 0.3
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      lunaticCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.3
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 100
+          value: 30
+          inSlope: 0.3
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      modifiers: []
     behaviour:
-      rid: 6552513238185804238
+      rid: 6552513557796749846
     bulletModel: {fileID: 11400000, guid: 3a7f97312ebcf464f9bb4a2dc3a6d715, type: 2}
     colors:
     - {r: 1, g: 0, b: 0, a: 0.5019608}
@@ -1445,13 +1912,13 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 6552513238185804238
+    - rid: 6552513557796749846
       type: {class: DefaultBehaviour, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:
         lifeTime: 1000
         behaviours:
-        - rid: 6552513238185804239
-    - rid: 6552513238185804239
+        - rid: 6552513557796749847
+    - rid: 6552513557796749847
       type: {class: CruvedBullet, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:
         curve:
@@ -1500,6 +1967,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawner:
     loopLength: 120
+    span: 0
+    count: 20
     startSpeed:
       difficultySwitch: 0
       isCurve: 0
@@ -1636,13 +2105,144 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       modifiers: []
-    angle: 5
-    angleDelta: 45
-    rotateSpeed: 0
-    span: 0
-    count: 20
+    angle:
+      difficultySwitch: 0
+      isCurve: 0
+      easy: 0
+      normal: 5
+      hard: 0
+      lunatic: 0
+      easyCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      normalCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      hardCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      lunaticCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      modifiers: []
+    subtendAngle:
+      difficultySwitch: 0
+      isCurve: 0
+      easy: 30
+      normal: 45
+      hard: 30
+      lunatic: 30
+      easyCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.3
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 100
+          value: 30
+          inSlope: 0.3
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      normalCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.3
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 100
+          value: 30
+          inSlope: 0.3
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      hardCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.3
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 100
+          value: 30
+          inSlope: 0.3
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      lunaticCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.3
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 100
+          value: 30
+          inSlope: 0.3
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      modifiers: []
     behaviour:
-      rid: 6552513238185804666
+      rid: 6552513557796749850
     bulletModel: {fileID: 11400000, guid: 3a7f97312ebcf464f9bb4a2dc3a6d715, type: 2}
     colors:
     - {r: 0, g: 0, b: 1, a: 0.5019608}
@@ -1652,13 +2252,13 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 6552513238185804666
+    - rid: 6552513557796749850
       type: {class: DefaultBehaviour, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:
         lifeTime: 1000
         behaviours:
-        - rid: 6552513238185804667
-    - rid: 6552513238185804667
+        - rid: 6552513557796749851
+    - rid: 6552513557796749851
       type: {class: CruvedBullet, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:
         curve:
@@ -1707,6 +2307,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawner:
     loopLength: 0
+    span: 60
+    count: 0
     startSpeed:
       difficultySwitch: 0
       isCurve: 0
@@ -1843,13 +2445,144 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       modifiers: []
-    angle: 0
-    angleDelta: 10
-    rotateSpeed: 5
-    span: 60
-    count: 0
+    angle:
+      difficultySwitch: 0
+      isCurve: 0
+      easy: 0
+      normal: 0
+      hard: 0
+      lunatic: 0
+      easyCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      normalCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      hardCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      lunaticCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      modifiers: []
+    subtendAngle:
+      difficultySwitch: 0
+      isCurve: 0
+      easy: 30
+      normal: 11.25
+      hard: 30
+      lunatic: 30
+      easyCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.3
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 100
+          value: 30
+          inSlope: 0.3
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      normalCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.3
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 100
+          value: 30
+          inSlope: 0.3
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      hardCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.3
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 100
+          value: 30
+          inSlope: 0.3
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      lunaticCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.3
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 100
+          value: 30
+          inSlope: 0.3
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      modifiers: []
     behaviour:
-      rid: 6552513238185804694
+      rid: 6552513557796749826
     bulletModel: {fileID: 11400000, guid: 85d39de7508d245c0bb4fc4b0697e298, type: 2}
     colors:
     - {r: 0, g: 0, b: 1, a: 1}
@@ -1859,13 +2592,13 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 6552513238185804694
+    - rid: 6552513557796749826
       type: {class: DefaultBehaviour, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:
         lifeTime: 1000
         behaviours:
-        - rid: 6552513557796749654
-    - rid: 6552513557796749654
+        - rid: 6552513557796749827
+    - rid: 6552513557796749827
       type: {class: AnimateSpeed, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:
         curve:
@@ -1985,12 +2718,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawner:
-    loopLength: 1000
+    loopLength: 0
+    span: 3
+    count: 0
     startSpeed:
       difficultySwitch: 0
       isCurve: 0
       easy: 0
-      normal: 0.2
+      normal: 0.15
       hard: 0
       lunatic: 0
       easyCurve:
@@ -2017,13 +2752,12 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-      modifiers:
-      - rid: 6552513557796749483
+      modifiers: []
     ways:
       difficultySwitch: 0
       isCurve: 0
       easy: 1
-      normal: 90
+      normal: 12
       hard: 1
       lunatic: 1
       easyCurve:
@@ -2123,13 +2857,145 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       modifiers: []
-    angle: 282
-    angleDelta: 4
-    rotateSpeed: 1
-    span: 100
-    count: 0
+    angle:
+      difficultySwitch: 0
+      isCurve: 0
+      easy: 0
+      normal: 0
+      hard: 0
+      lunatic: 0
+      easyCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      normalCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      hardCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      lunaticCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      modifiers:
+      - rid: 6552513851191197696
+    subtendAngle:
+      difficultySwitch: 0
+      isCurve: 0
+      easy: 30
+      normal: 30
+      hard: 30
+      lunatic: 30
+      easyCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.3
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 100
+          value: 30
+          inSlope: 0.3
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      normalCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.3
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 100
+          value: 30
+          inSlope: 0.3
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      hardCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.3
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 100
+          value: 30
+          inSlope: 0.3
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      lunaticCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.3
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 100
+          value: 30
+          inSlope: 0.3
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      modifiers: []
     behaviour:
-      rid: 852585555119308822
+      rid: 6552513557796749825
     bulletModel: {fileID: 11400000, guid: 78cb1772360a74b97847ba56d23bfd98, type: 2}
     colors:
     - {r: 0.32549024, g: 1, b: 0.4126578, a: 1}
@@ -2139,18 +3005,18 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 852585555119308822
+    - rid: 6552513557796749825
       type: {class: DefaultBehaviour, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:
         lifeTime: 200
         behaviours: []
-    - rid: 6552513557796749483
-      type: {class: RandomModifier, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
+    - rid: 6552513851191197696
+      type: {class: AddDelta, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:
         difficultySwitch: 0
         isCurve: 1
         easy: 0
-        normal: 0.1
+        normal: 0
         hard: 0
         lunatic: 0
         easyCurve:
@@ -2164,24 +3030,24 @@ MonoBehaviour:
           m_Curve:
           - serializedVersion: 3
             time: 0
-            value: 0
-            inSlope: 0.000100369405
-            outSlope: 0.000100369405
+            value: 1
+            inSlope: 0
+            outSlope: 0
             tangentMode: 0
-            weightedMode: 0
+            weightedMode: 2
             inWeight: 0
-            outWeight: 0.05280173
+            outWeight: 1
           - serializedVersion: 3
-            time: 1000
-            value: 0.1
-            inSlope: 0.00007632474
-            outSlope: 0.00007632474
+            time: 500
+            value: 361
+            inSlope: 0
+            outSlope: 0
             tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.06034479
+            weightedMode: 1
+            inWeight: 1
             outWeight: 0
           m_PreInfinity: 2
-          m_PostInfinity: 2
+          m_PostInfinity: 1
           m_RotationOrder: 4
         hardCurve:
           serializedVersion: 2

@@ -53,19 +53,48 @@ namespace InstancedDanmaku
 
 		public float GetTangent(int frame)
 		{
-			if (!isCurve) return 0;
-			return GetValue(frame) - GetValue(Mathf.Max(frame - 1, 0));
+			// AddDelta‚Ì“s‡‚Åæ‚É•]‰¿‚µ‚Ä‚Ù‚µ‚¢
+			var before = GetValue(Mathf.Max(frame - 1, 0));
+			return GetValue(frame) - before;
 		}
 
 		public int GetInt(int frame) => Mathf.RoundToInt(GetValue(frame));
 	}
 
 	[System.Serializable]
-	public class RandomModifier : FlexibleValueWithoutModfier, FlexibleValue.IModifier
+	public class AddRandom : FlexibleValueWithoutModfier, FlexibleValue.IModifier
 	{
-		public float ModifyValue(float original, int frame) {
+		public float ModifyValue(float original, int frame)
+		{
 			var val = GetValue(frame);
 			return original + Random.Range(-val, +val);
+		}
+	}
+
+	[System.Serializable]
+	public class AddDelta : FlexibleValueWithoutModfier, FlexibleValue.IModifier
+	{
+		int cacheFrame;
+		float cacheValue;
+
+		public float ModifyValue(float original, int frame)
+		{
+			if (frame == 0)
+			{
+				cacheFrame = 0;
+				cacheValue = GetValue(0);
+				return original + cacheValue;
+			}
+
+			if(frame < cacheFrame)
+				throw new System.NotImplementedException();
+			
+			while(cacheFrame < frame)
+			{
+				cacheFrame++;
+				cacheValue += GetValue(cacheFrame);
+			}
+			return original + cacheValue;
 		}
 	}
 

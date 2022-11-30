@@ -10,21 +10,21 @@ namespace InstancedDanmaku
 		[SerializeField]
 		public int loopLength = 0;
 		[SerializeField]
+		public int span = 5;
+		[SerializeField]
+		public int count = 0;
+
+		[SerializeField]
 		public FlexibleValue startSpeed;
 		[SerializeField]
 		public FlexibleValue ways = new FlexibleValue(1);
 		[SerializeField]
-		public float angle;
+		public FlexibleValue angle;
 		[SerializeField]
-		public float angleDelta = 30;
-		[SerializeField]
-		public float rotateSpeed = 0;
-		[SerializeField]
-		public int span = 5;
-		[SerializeField]
-		public int count = 0;
+		public FlexibleValue subtendAngle = new FlexibleValue(30);
 		[SerializeReference, BulletBehaviourSelector]
 		IBulletBehaviour behaviour = new DefaultBehaviour();
+
 		[SerializeField]
 		BulletModel bulletModel;
 		[SerializeField]
@@ -63,24 +63,25 @@ namespace InstancedDanmaku
 		int currentCount = 0;
 		void Fire()
 		{
+			void AddBullet(Vector3 position, Quaternion rotation) =>
+				(DanmakuInstance ?? Danmaku.Instance).AddBullet(bulletModel, position, rotation, colors[colorIndex % colors.Length], behaviour, rotation * Vector3.forward * startSpeed.GetValue(currentFrame));
+
 			if (count > 0 && currentCount >= count) return;
 
 			for (int i = 0; i < ways.GetInt(currentFrame); i++)
 			{
-				float totalWidth = angleDelta * (ways.GetInt(currentFrame) - 1);
-				float ang = angle - totalWidth / 2f + i * angleDelta;
+				float totalWidth = subtendAngle.GetValue(currentFrame) * (ways.GetInt(currentFrame) - 1);
+				float ang = angle.GetValue(currentFrame) - totalWidth / 2f + i * subtendAngle.GetValue(currentFrame);
 				var rot = Rotation * Quaternion.Euler(ang, 90f, 0);
-				(DanmakuInstance ?? Danmaku.Instance).AddBullet(bulletModel, Position, rot, colors[colorIndex % colors.Length], behaviour, rot * Vector3.forward * startSpeed.GetValue(currentFrame));
+				AddBullet(Position, rot);
 			}
 
-			colorIndex++;
 			currentCount++;
-			angle += rotateSpeed;
-			if (angle > 360f) angle -= 360f;
-
+			colorIndex++;
 			onFire?.Invoke();
 		}
 
+		/*
 		IEnumerable<Quaternion> GetRotations()
 		{
 			for (int i = 0; i < ways.GetInt(currentFrame); i++)
@@ -90,6 +91,7 @@ namespace InstancedDanmaku
 				yield return Rotation * Quaternion.Euler(ang, 90f, 0);
 			}
 		}
+		*/
 
 		public void DrawGizmos()
 		{
