@@ -17,11 +17,11 @@ namespace InstancedDanmaku
 		[SerializeField]
 		public FlexibleValue startSpeed;
 		[SerializeField]
-		public FlexibleValue ways = new FlexibleValue(1);
+		public FlexibleValue ways;
 		[SerializeField]
 		public FlexibleValue angle;
 		[SerializeField]
-		public FlexibleValue subtendAngle = new FlexibleValue(30);
+		public FlexibleValue subtendAngle;
 		[SerializeReference, BulletBehaviourSelector]
 		IBulletBehaviour behaviour = new DefaultBehaviour();
 

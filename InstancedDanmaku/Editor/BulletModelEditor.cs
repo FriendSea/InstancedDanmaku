@@ -16,6 +16,7 @@ namespace InstancedDanmaku
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("mesh"));
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("texture"));
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("material"));
+			EditorGUILayout.PropertyField(serializedObject.FindProperty("priority"));
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("scale"));
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("radius"));
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("vanishEffect"));

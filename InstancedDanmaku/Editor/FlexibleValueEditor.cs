@@ -115,4 +115,26 @@ namespace InstancedDanmaku
 			return position;
 		}
 	}
+
+	[CustomPropertyDrawer(typeof(Fractional))]
+	public class FractionalDrawer : PropertyDrawer
+	{
+		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+		{
+			EditorGUI.PropertyField(position, property.FindPropertyRelative("unit"), label);
+		}
+	}
+
+	[CustomPropertyDrawer(typeof(ActiveRange))]
+	public class ActiveRangeDrawer : PropertyDrawer
+	{
+		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+		{
+			position.width -= (position.width - EditorGUIUtility.labelWidth) / 2f;
+			EditorGUI.PropertyField(position, property.FindPropertyRelative("start"), label);
+			position.x += position.width;
+			position.width -= EditorGUIUtility.labelWidth;
+			EditorGUI.PropertyField(position, property.FindPropertyRelative("end"), GUIContent.none);
+		}
+	}
 }

@@ -8,7 +8,7 @@ namespace InstancedDanmaku
 	public class AnimateSpeed : IBulletBehaviour
 	{
 		[SerializeField]
-		FlexibleValue curve = FlexibleValue.Curve(10);
+		FlexibleValue curve;// = FlexibleValue.Curve(10);
 
 		public void UpdateBullet(ref Bullet bullet)
 		{

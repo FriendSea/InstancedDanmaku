@@ -86,15 +86,42 @@ namespace InstancedDanmaku
 				return original + cacheValue;
 			}
 
-			if(frame < cacheFrame)
+			if (frame < cacheFrame)
 				throw new System.NotImplementedException();
-			
-			while(cacheFrame < frame)
+
+			while (cacheFrame < frame)
 			{
 				cacheFrame++;
 				cacheValue += GetValue(cacheFrame);
 			}
 			return original + cacheValue;
+		}
+	}
+
+	[System.Serializable]
+	public class Fractional : FlexibleValue.IModifier
+	{
+		[SerializeField]
+		float unit = 360;
+		public float ModifyValue(float original, int frame)
+		{
+			return original - Mathf.Floor(original / unit) * unit;
+		}
+	}
+
+	[System.Serializable]
+	public class ActiveRange : FlexibleValue.IModifier
+	{
+		[SerializeField]
+		int start;
+		[SerializeField]
+		int end;
+
+		public float ModifyValue(float original, int frame)
+		{
+			if (frame < start) return 0;
+			if (frame >= end) return 0;
+			return original;
 		}
 	}
 
@@ -112,8 +139,9 @@ namespace InstancedDanmaku
 		public override float GetValue(int frame)
 		{
 			var val = base.GetValue(frame);
-			foreach (var mod in modifiers)
-				val = mod.ModifyValue(val, frame);
+			if (modifiers != null)
+				foreach (var mod in modifiers)
+					val = mod.ModifyValue(val, frame);
 			return val;
 		}
 

@@ -9,6 +9,8 @@ namespace InstancedDanmaku
 	{
 		[SerializeField]
 		int lifeTime = 1000;
+		[SerializeField]
+		bool updateRotation;
 		[SerializeReference, BulletBehaviourSelector]
 		IBulletBehaviour[] behaviours;
 
@@ -18,6 +20,8 @@ namespace InstancedDanmaku
 		{
 			foreach (var b in behaviours)
 				b.UpdateBullet(ref bullet);
+			if (updateRotation)
+				bullet.rotation = Quaternion.LookRotation(bullet.velocity, Vector3.forward);
 			if (bullet.CurrentFrame > lifeTime)
 				bullet.Destroy();
 		}

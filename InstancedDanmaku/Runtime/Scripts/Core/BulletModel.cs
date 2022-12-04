@@ -14,6 +14,8 @@ namespace InstancedDanmaku
 		[SerializeField]
 		Material material;
 		[SerializeField]
+		int priority;
+		[SerializeField]
 		Vector3 scale = Vector3.one;
 		[SerializeField]
 		float radius = 0.1f;
@@ -22,9 +24,20 @@ namespace InstancedDanmaku
 
 		public Mesh Mesh => mesh;
 		public Texture2D Texture => texture;
-		public Material Material => material;
 		public Vector3 Scale => scale;
 		public float Radius => radius;
 		public bool VanishEffect => vanishEffect;
+
+		[System.NonSerialized]
+		Material _material = null;
+		public Material Material { get
+			{
+				if(_material == null)
+				{
+					_material = new Material(material);
+					_material.renderQueue += priority;
+				}
+				return _material;
+			} }
 	}
 }
