@@ -10,7 +10,19 @@ namespace InstancedDanmaku
 	[CustomPropertyDrawer(typeof(BulletBehaviourSelector))]
 	public class BulletBehaviourEditor : PropertyDrawer
 	{
-		static List<Type> types = AppDomain.CurrentDomain.GetAssemblies().SelectMany(assem => assem.GetTypes()).
+		static Type[] TryGetTypes(System.Reflection.Assembly assembly)
+		{
+			try
+			{
+				return assembly.GetTypes();
+			}
+			catch
+			{
+				return new Type[0];
+			}
+		}
+
+		static List<Type> types = AppDomain.CurrentDomain.GetAssemblies().SelectMany(assem => TryGetTypes(assem)).
 						Where(t => typeof(IBulletBehaviour).IsAssignableFrom(t) && (t != typeof(IBulletBehaviour))).ToList();
 
 		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
