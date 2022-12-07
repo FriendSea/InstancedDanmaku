@@ -61,7 +61,9 @@ namespace InstancedDanmaku
 		Bullet[] bullets;
 		Matrix4x4[] matricies;
 		Vector4[] colors;
+#if !BULLETS_DISABLE_COLLISON_JOB
 		NativeArray<SpherecastCommand> raycastCommands;
+#endif
 		NativeArray<RaycastHit> raycastHits;
 		internal Stack<int> Unused { get; }
 
@@ -77,7 +79,9 @@ namespace InstancedDanmaku
 			matricies = new Matrix4x4[MAX_BULLETS];
 			colors = new Vector4[MAX_BULLETS];
 
+#if !BULLETS_DISABLE_COLLISON_JOB
 			raycastCommands = new NativeArray<SpherecastCommand>(MAX_BULLETS, Allocator.Persistent);
+#endif
 			raycastHits = new NativeArray<RaycastHit>(MAX_BULLETS, Allocator.Persistent);
 
 			Unused = new Stack<int>(Enumerable.Range(0, MAX_BULLETS));
@@ -108,34 +112,48 @@ namespace InstancedDanmaku
 				bullets[i].Update();
 				colors[i] = bullets[i].color;
 				matricies[i] = bullets[i].Active ? Matrix4x4.TRS(bullets[i].position, bullets[i].rotation, Model.Scale) : Matrix4x4.zero;
+#if !BULLETS_DISABLE_COLLISON_JOB
 				raycastCommands[i] = bullets[i].Used ? new SpherecastCommand(bullets[i].position - camDir * Parent.CurrentSettings.collisionDepth, Model.Radius, camDir, Parent.CurrentSettings.collisionDepth * 2f, Parent.CurrentSettings.collisionMask) : new SpherecastCommand();
+#endif
 			}
 		}
 
+
+#if BULLETS_DISABLE_COLLISON_JOB
+		Collider[] colliders = new Collider[4];
+#endif
 		public void CollisionBullets()
 		{
-			SpherecastCommand.ScheduleBatch(raycastCommands, raycastHits, 20).Complete();
-
+#if BULLETS_DISABLE_COLLISON_JOB
 			for (int i = 0; i < bullets.Length; i++)
 			{
-				if (raycastCommands[i].radius > 0)
-				{
-					if (raycastHits[i].collider != null)
-					{
-						var delete = false;
-						raycastHits[i].collider.GetComponentsInChildren<IBulletCollider>(collisionTargets);
-						if (collisionTargets.Count <= 0)
-							delete = true;
-						else foreach (var target in collisionTargets)
-						{
-							target.Collide(bullets[i]);
-							delete |= target.DeleteBullet;
-						}
-						if (delete)
-							bullets[i].Destroy();
-					}
-				}
+				if (!bullets[i].Used) continue;
+				var count = Physics.OverlapSphereNonAlloc(bullets[i].position, Model.Radius, colliders, Parent.CurrentSettings.collisionMask, QueryTriggerInteraction.Ignore);
+				if (count <= 0) continue;
+				DoCollision(colliders[0], ref bullets[i]);
 			}
+#else
+			SpherecastCommand.ScheduleBatch(raycastCommands, raycastHits, 20).Complete();
+			for (int i = 0; i < bullets.Length; i++)
+				if (raycastCommands[i].radius > 0)
+					if (raycastHits[i].collider != null)
+						DoCollision(raycastHits[i].collider, ref bullets[i]);
+#endif
+		}
+
+		void DoCollision(Collider collider, ref Bullet bullet)
+		{
+			var delete = false;
+			collider.GetComponentsInChildren<IBulletCollider>(collisionTargets);
+			if (collisionTargets.Count <= 0)
+				delete = true;
+			else foreach (var target in collisionTargets)
+				{
+					target.Collide(bullet);
+					delete |= target.DeleteBullet;
+				}
+			if (delete)
+				bullet.Destroy();
 		}
 
 		MaterialPropertyBlock propertyBlock = new MaterialPropertyBlock();
@@ -157,7 +175,9 @@ namespace InstancedDanmaku
 
 		public void Dispose()
 		{
+#if !BULLETS_DISABLE_COLLISON_JOB
 			raycastCommands.Dispose();
+#endif
 			raycastHits.Dispose();
 		}
 	}
@@ -209,14 +229,14 @@ namespace InstancedDanmaku
 		public void AddBullet(BulletModel model, Vector3 position, Quaternion rotation, Color color, IBulletBehaviour behaviour, Vector3 velocity = default)
 		{
 			BulletGroup group = null;
-			foreach(var g in groups)
+			foreach (var g in groups)
 			{
 				if (g.Model != model) continue;
 				if (g.IsFull) continue;
 				group = g;
 				break;
 			}
-			if(group == null)
+			if (group == null)
 			{
 				group = new BulletGroup(model, this);
 				groups.Add(group);
