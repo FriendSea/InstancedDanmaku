@@ -34,8 +34,15 @@ namespace InstancedDanmaku
 			{
 				if(_material == null)
 				{
-					_material = new Material(material);
-					_material.renderQueue += priority;
+					if(priority == 0)
+					{
+						_material = material;
+					}
+					else
+					{
+						_material = new Material(material);
+						_material.renderQueue += priority;
+					}
 				}
 				return _material;
 			} }

@@ -13,7 +13,7 @@ namespace InstancedDanmaku
 		{
             serializedObject.Update();
 
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("useFixedUpdate"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("settings.updateMethod"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("settings.collisionDepth"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("settings.vanishEffect"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("settings.vanishBulletBehaviour"));

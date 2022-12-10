@@ -19,9 +19,14 @@ MonoBehaviour:
     vanishBulletBehaviour:
       rid: 6552513238185804641
   useFixedUpdate: 1
+  updateTiming:
+    timing:
+      rid: 1628869476035330134
   references:
     version: 2
     RefIds:
+    - rid: 1628869476035330134
+      type: {class: Update/ScriptRunBehaviourUpdate, ns: UnityEngine.PlayerLoop, asm: UnityEngine.CoreModule}
     - rid: 6552513238185804641
       type: {class: VanishEffectBehaviour, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:

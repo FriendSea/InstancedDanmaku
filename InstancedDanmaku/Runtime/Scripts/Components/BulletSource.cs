@@ -4,29 +4,31 @@ using UnityEngine;
 
 namespace InstancedDanmaku
 {
-    public class BulletSource : MonoBehaviour
-    {
+	public class BulletSource : MonoBehaviour
+	{
 		[SerializeField]
 		BulletSpawner spawner = new BulletSpawner();
 
-		private void FixedUpdate()
+		private void Awake()
 		{
-			if (DanmakuSettings.Current.useFixedUpdate)
-			{
-				spawner.Position = transform.position;
-				spawner.Rotation = transform.rotation;
-				spawner.Update();
-			}
+			spawner.DanmakuInstance = DanmakuSettings.Instance.Danmaku;
 		}
 
-		private void Update()
+		private void OnEnable()
 		{
-			if (!DanmakuSettings.Current.useFixedUpdate)
-			{
-				spawner.Position = transform.position;
-				spawner.Rotation = transform.rotation;
-				spawner.Update();
-			}
+			DanmakuSettings.Instance.Danmaku.CurrentSettings.updateMethod.OnPlayerLoop += UpdateSpawner;
+		}
+
+		private void OnDisable()
+		{
+			DanmakuSettings.Instance.Danmaku.CurrentSettings.updateMethod.OnPlayerLoop -= UpdateSpawner;
+		}
+
+		void UpdateSpawner()
+		{
+			spawner.Position = transform.position;
+			spawner.Rotation = transform.rotation;
+			spawner.Update();
 		}
 
 		private void OnDrawGizmosSelected()

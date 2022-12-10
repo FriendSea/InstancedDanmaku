@@ -64,7 +64,7 @@ namespace InstancedDanmaku
 		void Fire()
 		{
 			void AddBullet(Vector3 position, Quaternion rotation) =>
-				(DanmakuInstance ?? Danmaku.Instance).AddBullet(bulletModel, position, rotation, colors[colorIndex % colors.Length], behaviour, rotation * Vector3.forward * startSpeed.GetValue(currentFrame));
+				DanmakuInstance.AddBullet(bulletModel, position, rotation, colors[colorIndex % colors.Length], behaviour, rotation * Vector3.forward * startSpeed.GetValue(currentFrame));
 
 			if (count > 0 && currentCount >= count) return;
 

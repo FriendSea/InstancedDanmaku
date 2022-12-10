@@ -213,16 +213,23 @@ namespace InstancedDanmaku
 			public BulletModel vanishEffect;
 			[SerializeReference, BulletBehaviourSelector]
 			public IBulletBehaviour vanishBulletBehaviour = new VanishEffectBehaviour();
+			[SerializeField]
+			public SerializablePlayerLoop updateMethod;
 		}
-
-		public static Settings InstanceSetting { get; set; } = new Settings();
-
-		static Danmaku _instance = null;
-		public static Danmaku Instance => _instance ?? (_instance = new Danmaku(InstanceSetting));
 
 		public Settings CurrentSettings { get; } = null;
 
-		public Danmaku(Settings settings) => CurrentSettings = settings;
+		public Danmaku(Settings settings) { 
+			CurrentSettings = settings;
+			settings.updateMethod.OnPlayerLoop += UpdateAndCollision;
+			PlayerLoopInjector.AddAction(typeof(UnityEngine.PlayerLoop.PostLateUpdate.UpdateAllRenderers), Render);
+		}
+
+		void UpdateAndCollision()
+		{
+			Update();
+			Colission();
+		}
 
 		List<BulletGroup> groups = new List<BulletGroup>();
 
@@ -279,17 +286,20 @@ namespace InstancedDanmaku
 #endif
 		}
 
+		bool disposed = false;
 		public void Dispose()
 		{
+			if (disposed) return;
+			disposed = true;
 			foreach (var group in groups)
 				group.Dispose();
 			groups.Clear();
+			CurrentSettings.updateMethod.OnPlayerLoop -= UpdateAndCollision;
+			PlayerLoopInjector.RemoveAction(typeof(UnityEngine.PlayerLoop.PostLateUpdate.UpdateAllRenderers), Render);
 		}
 
-		public static void Reset()
-		{
-			Instance.Dispose();
-			_instance = null;
+		~Danmaku(){
+			Dispose();
 		}
 	}
 }

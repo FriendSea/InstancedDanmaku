@@ -20,17 +20,13 @@ namespace InstancedDanmaku
 
 		[SerializeField]
 		internal Danmaku.Settings settings;
-		[SerializeField]
-		internal bool useFixedUpdate;
 
-		static DanmakuSettings _current;
-		public static DanmakuSettings Current {
-			get => _current;
-			set
-			{
-				_current = value;
-				Danmaku.InstanceSetting = value.settings;
-			}
+		static DanmakuSettings _instance = null;
+		public static DanmakuSettings Instance {
+			get => _instance ?? (_instance = Resources.FindObjectsOfTypeAll<DanmakuSettings>()[0]);
 		}
+
+		Danmaku _danmaku = null;
+		public Danmaku Danmaku => _danmaku ?? (_danmaku = new Danmaku(settings));
 	}
 }

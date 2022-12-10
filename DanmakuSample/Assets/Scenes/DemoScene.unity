@@ -308,7 +308,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 486674916}
-  - component: {fileID: 486674915}
   - component: {fileID: 486674917}
   m_Layer: 0
   m_Name: GameObject
@@ -317,19 +316,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &486674915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 486674914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e02bb8a74af24404fab62dfe8dabd059, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  danmakuSettings: {fileID: 11400000, guid: 0de2bb20a84254cb7821efe8e327ade5, type: 2}
 --- !u!4 &486674916
 Transform:
   m_ObjectHideFlags: 0
@@ -893,6 +879,343 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1588474085
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1588474087}
+  - component: {fileID: 1588474086}
+  m_Layer: 0
+  m_Name: GameObject (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1588474086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588474085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7935f5c22546c124e97740a03ed9a324, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawner:
+    loopLength: 0
+    span: 0
+    count: 0
+    startSpeed:
+      difficultySwitch: 0
+      isCurve: 0
+      easy: 0
+      normal: 1
+      hard: 0
+      lunatic: 0
+      easyCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      normalCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      hardCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      lunaticCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      modifiers: []
+    ways:
+      difficultySwitch: 0
+      isCurve: 0
+      easy: 1
+      normal: 1
+      hard: 1
+      lunatic: 1
+      easyCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.01
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 100
+          value: 1
+          inSlope: 0.01
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      normalCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.01
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 100
+          value: 1
+          inSlope: 0.01
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      hardCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.01
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 100
+          value: 1
+          inSlope: 0.01
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      lunaticCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.01
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 100
+          value: 1
+          inSlope: 0.01
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      modifiers: []
+    angle:
+      difficultySwitch: 0
+      isCurve: 0
+      easy: 0
+      normal: 0
+      hard: 0
+      lunatic: 0
+      easyCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      normalCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      hardCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      lunaticCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      modifiers: []
+    subtendAngle:
+      difficultySwitch: 0
+      isCurve: 0
+      easy: 30
+      normal: 30
+      hard: 30
+      lunatic: 30
+      easyCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.3
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 100
+          value: 30
+          inSlope: 0.3
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      normalCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.3
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 100
+          value: 30
+          inSlope: 0.3
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      hardCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.3
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 100
+          value: 30
+          inSlope: 0.3
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      lunaticCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.3
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 100
+          value: 30
+          inSlope: 0.3
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      modifiers: []
+    behaviour:
+      rid: 6552513851191198150
+    bulletModel: {fileID: 11400000, guid: 78cb1772360a74b97847ba56d23bfd98, type: 2}
+    colors:
+    - {r: 1, g: 0, b: 0, a: 1}
+    onFire:
+      m_PersistentCalls:
+        m_Calls: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 6552513851191198150
+      type: {class: DefaultBehaviour, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
+      data:
+        lifeTime: 1000
+        updateRotation: 0
+        behaviours: []
+--- !u!4 &1588474087
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588474085}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1643444894
 GameObject:
   m_ObjectHideFlags: 0
@@ -1222,6 +1545,7 @@ MonoBehaviour:
       type: {class: DefaultBehaviour, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:
         lifeTime: 200
+        updateRotation: 0
         behaviours: []
     - rid: 6552513557796750137
       type: {class: AddDelta, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
@@ -1579,6 +1903,7 @@ MonoBehaviour:
       type: {class: DefaultBehaviour, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:
         lifeTime: 200
+        updateRotation: 0
         behaviours: []
     - rid: 6552513557796750136
       type: {class: AddDelta, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
@@ -1916,6 +2241,7 @@ MonoBehaviour:
       type: {class: DefaultBehaviour, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:
         lifeTime: 1000
+        updateRotation: 0
         behaviours:
         - rid: 6552513557796749847
     - rid: 6552513557796749847
@@ -2256,6 +2582,7 @@ MonoBehaviour:
       type: {class: DefaultBehaviour, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:
         lifeTime: 1000
+        updateRotation: 0
         behaviours:
         - rid: 6552513557796749851
     - rid: 6552513557796749851
@@ -2596,6 +2923,7 @@ MonoBehaviour:
       type: {class: DefaultBehaviour, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:
         lifeTime: 1000
+        updateRotation: 0
         behaviours:
         - rid: 6552513557796749827
     - rid: 6552513557796749827
@@ -3009,6 +3337,7 @@ MonoBehaviour:
       type: {class: DefaultBehaviour, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:
         lifeTime: 200
+        updateRotation: 0
         behaviours: []
     - rid: 6552513851191197696
       type: {class: AddDelta, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
