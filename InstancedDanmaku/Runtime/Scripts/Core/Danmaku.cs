@@ -208,13 +208,13 @@ namespace InstancedDanmaku
 			[SerializeField]
 			public int collisionMask = 1;
 			[SerializeField]
-			public float collisionDepth = 1f;
+			public float collisionDepth = 1000f;
 			[SerializeField]
 			public BulletModel vanishEffect;
 			[SerializeReference, BulletBehaviourSelector]
 			public IBulletBehaviour vanishBulletBehaviour = new VanishEffectBehaviour();
 			[SerializeField]
-			public SerializablePlayerLoop updateMethod;
+			public SerializablePlayerLoop updateMethod = new SerializablePlayerLoop();
 		}
 
 		public Settings CurrentSettings { get; } = null;
