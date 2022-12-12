@@ -45,7 +45,10 @@ namespace InstancedDanmaku
             actions[timing] += action;
         }
 
-        public static void RemoveAction(System.Type timing, System.Action action)=> actions[timing] -= action;
+        public static void RemoveAction(System.Type timing, System.Action action) {
+            if (actions.ContainsKey(timing))
+                actions[timing] -= action;
+        }
     }
 
     [System.Serializable]

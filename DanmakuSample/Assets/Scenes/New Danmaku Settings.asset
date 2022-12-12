@@ -17,16 +17,16 @@ MonoBehaviour:
     collisionDepth: 100
     vanishEffect: {fileID: 11400000, guid: 72b73bfe93e6644879d0dccf8e7769c4, type: 2}
     vanishBulletBehaviour:
-      rid: 1628869565481222422
+      rid: 1628869565481222772
     updateMethod:
       timing:
-        rid: 1628869565481222423
+        rid: 1628869565481222773
   references:
     version: 2
     RefIds:
-    - rid: 1628869565481222422
+    - rid: 1628869565481222772
       type: {class: VanishEffectBehaviour, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:
         lifeTime: 20
-    - rid: 1628869565481222423
+    - rid: 1628869565481222773
       type: {class: FixedUpdate/ScriptRunBehaviourFixedUpdate, ns: UnityEngine.PlayerLoop, asm: UnityEngine.CoreModule}

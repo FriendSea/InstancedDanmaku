@@ -223,6 +223,12 @@ namespace InstancedDanmaku
 			CurrentSettings = settings;
 			settings.updateMethod.OnPlayerLoop += UpdateAndCollision;
 			PlayerLoopInjector.AddAction(typeof(UnityEngine.PlayerLoop.PostLateUpdate.UpdateAllRenderers), Render);
+#if UNITY_EDITOR
+			UnityEditor.EditorApplication.playModeStateChanged += change => {
+				if (change == UnityEditor.PlayModeStateChange.EnteredEditMode)
+					Dispose();
+			};
+#endif
 		}
 
 		void UpdateAndCollision()
@@ -294,6 +300,7 @@ namespace InstancedDanmaku
 			foreach (var group in groups)
 				group.Dispose();
 			groups.Clear();
+
 			CurrentSettings.updateMethod.OnPlayerLoop -= UpdateAndCollision;
 			PlayerLoopInjector.RemoveAction(typeof(UnityEngine.PlayerLoop.PostLateUpdate.UpdateAllRenderers), Render);
 		}
