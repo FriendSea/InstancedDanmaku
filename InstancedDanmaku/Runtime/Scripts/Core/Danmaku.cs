@@ -12,6 +12,7 @@ namespace InstancedDanmaku
 		public Quaternion rotation;
 		public Vector3 velocity;
 		public Vector4 color;
+		public float scale;
 		public int CurrentFrame { get; private set; }
 		public bool Active { get; private set; }
 		internal bool Used { get; set; }
@@ -24,6 +25,7 @@ namespace InstancedDanmaku
 			this.position = position;
 			this.rotation = rotation;
 			this.velocity = velocity;
+			this.scale = 1f;
 			this.color = color;
 			Used = true;
 			Active = true;
@@ -111,7 +113,7 @@ namespace InstancedDanmaku
 
 				bullets[i].Update();
 				colors[i] = bullets[i].color;
-				matricies[i] = bullets[i].Active ? Matrix4x4.TRS(bullets[i].position, bullets[i].rotation, Model.Scale) : Matrix4x4.zero;
+				matricies[i] = bullets[i].Active ? Matrix4x4.TRS(bullets[i].position, bullets[i].rotation, Model.Scale * bullets[i].scale) : Matrix4x4.zero;
 #if !BULLETS_DISABLE_COLLISON_JOB
 				raycastCommands[i] = bullets[i].Used ? new SpherecastCommand(bullets[i].position - camDir * Parent.CurrentSettings.collisionDepth, Model.Radius, camDir, Parent.CurrentSettings.collisionDepth * 2f, Parent.CurrentSettings.collisionMask) : new SpherecastCommand();
 #endif
@@ -195,6 +197,7 @@ namespace InstancedDanmaku
 			var col = bullet.color;
 			col.w = 0.99f - (float)bullet.CurrentFrame / lifeTime;
 			bullet.color = col;
+
 			if (bullet.CurrentFrame > lifeTime)
 				bullet.Destroy();
 		}
@@ -219,12 +222,14 @@ namespace InstancedDanmaku
 
 		public Settings CurrentSettings { get; } = null;
 
-		public Danmaku(Settings settings) { 
+		public Danmaku(Settings settings)
+		{
 			CurrentSettings = settings;
 			settings.updateMethod.OnPlayerLoop += UpdateAndCollision;
 			PlayerLoopInjector.AddAction(typeof(UnityEngine.PlayerLoop.PostLateUpdate.UpdateAllRenderers), Render);
 #if UNITY_EDITOR
-			UnityEditor.EditorApplication.playModeStateChanged += change => {
+			UnityEditor.EditorApplication.playModeStateChanged += change =>
+			{
 				if (change == UnityEditor.PlayModeStateChange.EnteredEditMode)
 					Dispose();
 			};
@@ -305,7 +310,8 @@ namespace InstancedDanmaku
 			PlayerLoopInjector.RemoveAction(typeof(UnityEngine.PlayerLoop.PostLateUpdate.UpdateAllRenderers), Render);
 		}
 
-		~Danmaku(){
+		~Danmaku()
+		{
 			Dispose();
 		}
 	}

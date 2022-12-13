@@ -15,18 +15,25 @@ MonoBehaviour:
   settings:
     collisionMask: 1
     collisionDepth: 100
+    spawnEffect: {fileID: 11400000, guid: 9d7fd389b209ab942a99cc8e3504be5b, type: 2}
+    spawnBulletBehaviour:
+      rid: 1628869592761237839
     vanishEffect: {fileID: 11400000, guid: 72b73bfe93e6644879d0dccf8e7769c4, type: 2}
     vanishBulletBehaviour:
-      rid: 1628869541593875441
+      rid: 1628869592761237835
     updateMethod:
       timing:
-        rid: 1628869541593875449
+        rid: 1628869592761237836
   references:
     version: 2
     RefIds:
-    - rid: 1628869541593875441
+    - rid: 1628869592761237835
       type: {class: VanishEffectBehaviour, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
       data:
         lifeTime: 20
-    - rid: 1628869541593875449
+    - rid: 1628869592761237836
       type: {class: FixedUpdate/ScriptRunBehaviourFixedUpdate, ns: UnityEngine.PlayerLoop, asm: UnityEngine.CoreModule}
+    - rid: 1628869592761237839
+      type: {class: SpawnEffectBehaviour, ns: InstancedDanmaku, asm: InstancedDanmaku.Runtime}
+      data:
+        lifeTime: 10

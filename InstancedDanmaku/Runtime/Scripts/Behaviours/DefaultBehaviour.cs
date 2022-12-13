@@ -16,8 +16,16 @@ namespace InstancedDanmaku
 
 		public bool VanishEffect => true;
 
+		const int spawnFrame = 10;
 		public void UpdateBullet(ref Bullet bullet)
 		{
+			if(bullet.CurrentFrame <= spawnFrame)
+			{
+				bullet.scale = Mathf.Lerp(3f, 1f, (float)bullet.CurrentFrame / spawnFrame);
+				var col = bullet.color;
+				col.w = (float)bullet.CurrentFrame / spawnFrame;
+				bullet.color = col;
+			}
 			foreach (var b in behaviours)
 				b.UpdateBullet(ref bullet);
 			if (updateRotation)
