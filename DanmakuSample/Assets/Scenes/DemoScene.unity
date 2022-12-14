@@ -811,7 +811,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1367120362
 Transform:
   m_ObjectHideFlags: 0
@@ -1184,6 +1184,38 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       modifiers: []
+    positionOffset:
+      difficultySwitch: 0
+      isCurve: 0
+      easy: 0
+      normal: 0
+      hard: 0
+      lunatic: 0
+      easyCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      normalCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      hardCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      lunaticCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      modifiers: []
     behaviour:
       rid: 6552513851191198150
     bulletModel: {fileID: 11400000, guid: 78cb1772360a74b97847ba56d23bfd98, type: 2}
@@ -1523,6 +1555,38 @@ MonoBehaviour:
           weightedMode: 0
           inWeight: 0
           outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      modifiers: []
+    positionOffset:
+      difficultySwitch: 0
+      isCurve: 0
+      easy: 0
+      normal: 0
+      hard: 0
+      lunatic: 0
+      easyCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      normalCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      hardCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      lunaticCurve:
+        serializedVersion: 2
+        m_Curve: []
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
@@ -1885,6 +1949,38 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       modifiers: []
+    positionOffset:
+      difficultySwitch: 0
+      isCurve: 0
+      easy: 0
+      normal: 0
+      hard: 0
+      lunatic: 0
+      easyCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      normalCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      hardCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      lunaticCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      modifiers: []
     behaviour:
       rid: 6552513557796749849
     bulletModel: {fileID: 11400000, guid: 026bc7663395a5c45a6258cbff53d845, type: 2}
@@ -2222,6 +2318,38 @@ MonoBehaviour:
           weightedMode: 0
           inWeight: 0
           outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      modifiers: []
+    positionOffset:
+      difficultySwitch: 0
+      isCurve: 0
+      easy: 0
+      normal: 0
+      hard: 0
+      lunatic: 0
+      easyCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      normalCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      hardCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      lunaticCurve:
+        serializedVersion: 2
+        m_Curve: []
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
@@ -2567,6 +2695,38 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       modifiers: []
+    positionOffset:
+      difficultySwitch: 0
+      isCurve: 0
+      easy: 0
+      normal: 0
+      hard: 0
+      lunatic: 0
+      easyCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      normalCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      hardCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      lunaticCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      modifiers: []
     behaviour:
       rid: 6552513557796749850
     bulletModel: {fileID: 11400000, guid: 3a7f97312ebcf464f9bb4a2dc3a6d715, type: 2}
@@ -2904,6 +3064,38 @@ MonoBehaviour:
           weightedMode: 0
           inWeight: 0
           outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      modifiers: []
+    positionOffset:
+      difficultySwitch: 0
+      isCurve: 0
+      easy: 0
+      normal: 0
+      hard: 0
+      lunatic: 0
+      easyCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      normalCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      hardCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      lunaticCurve:
+        serializedVersion: 2
+        m_Curve: []
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
@@ -3318,6 +3510,38 @@ MonoBehaviour:
           weightedMode: 0
           inWeight: 0
           outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      modifiers: []
+    positionOffset:
+      difficultySwitch: 0
+      isCurve: 0
+      easy: 0
+      normal: 0.3
+      hard: 0
+      lunatic: 0
+      easyCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      normalCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      hardCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      lunaticCurve:
+        serializedVersion: 2
+        m_Curve: []
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4

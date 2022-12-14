@@ -22,6 +22,8 @@ namespace InstancedDanmaku
 		public FlexibleValue angle;
 		[SerializeField]
 		public FlexibleValue subtendAngle;
+		[SerializeField]
+		public FlexibleValue positionOffset;
 		[SerializeReference, BulletBehaviourSelector]
 		IBulletBehaviour behaviour = new DefaultBehaviour();
 
@@ -64,7 +66,7 @@ namespace InstancedDanmaku
 		void Fire()
 		{
 			void AddBullet(Vector3 position, Quaternion rotation) =>
-				DanmakuInstance.AddBullet(bulletModel, position, rotation, colors[colorIndex % colors.Length], behaviour, rotation * Vector3.forward * startSpeed.GetValue(currentFrame));
+				DanmakuInstance.AddBullet(bulletModel, position + rotation * Vector3.forward * positionOffset.GetValue(currentFrame), rotation, colors[colorIndex % colors.Length], behaviour, rotation * Vector3.forward * startSpeed.GetValue(currentFrame));
 
 			if (count > 0 && currentCount >= count) return;
 
