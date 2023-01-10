@@ -83,6 +83,8 @@ namespace InstancedDanmaku
 			onFire?.Invoke();
 		}
 
+		public void Reset() => currentFrame = 0;
+
 		/*
 		IEnumerable<Quaternion> GetRotations()
 		{

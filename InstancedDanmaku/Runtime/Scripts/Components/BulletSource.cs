@@ -17,6 +17,7 @@ namespace InstancedDanmaku
 		private void OnEnable()
 		{
 			DanmakuSettings.Instance.Danmaku.CurrentSettings.updateMethod.OnPlayerLoop += UpdateSpawner;
+			spawner.Reset();
 		}
 
 		private void OnDisable()
