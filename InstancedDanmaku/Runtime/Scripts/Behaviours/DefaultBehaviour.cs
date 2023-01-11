@@ -10,16 +10,17 @@ namespace InstancedDanmaku
 		[SerializeField]
 		int lifeTime = 1000;
 		[SerializeField]
+		int spawnFrame = 10;
+		[SerializeField]
 		bool updateRotation;
 		[SerializeReference, BulletBehaviourSelector]
 		IBulletBehaviour[] behaviours;
 
 		public bool VanishEffect => true;
 
-		const int spawnFrame = 10;
 		public void UpdateBullet(ref Bullet bullet)
 		{
-			if(bullet.CurrentFrame <= spawnFrame)
+			if (bullet.CurrentFrame <= spawnFrame && spawnFrame != 0)
 			{
 				bullet.scale = Mathf.Lerp(3f, 1f, (float)bullet.CurrentFrame / spawnFrame);
 				var col = bullet.color;
