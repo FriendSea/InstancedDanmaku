@@ -127,6 +127,7 @@ namespace InstancedDanmaku
 		public void CollisionBullets()
 		{
 #if BULLETS_DISABLE_COLLISON_JOB
+			if (Model.Radius <= 0) return;
 			for (int i = 0; i < bullets.Length; i++)
 			{
 				if (!bullets[i].Used) continue;
