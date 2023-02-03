@@ -36,15 +36,15 @@ namespace InstancedDanmaku
 		{
 			if (difficultySwitch)
 			{
-				switch (DanmakuSettings.CurrentDifficulty)
+				switch (FlexibleValue.CurrentDifficulty)
 				{
-					case DanmakuSettings.Difficulty.Easy:
+					case FlexibleValue.Difficulty.Easy:
 						return isCurve ? easyCurve.Evaluate(frame) : easy;
-					case DanmakuSettings.Difficulty.Normal:
+					case FlexibleValue.Difficulty.Normal:
 						return isCurve ? normalCurve.Evaluate(frame) : normal;
-					case DanmakuSettings.Difficulty.Hard:
+					case FlexibleValue.Difficulty.Hard:
 						return isCurve ? hardCurve.Evaluate(frame) : hard;
-					case DanmakuSettings.Difficulty.Lunatic:
+					case FlexibleValue.Difficulty.Lunatic:
 						return isCurve ? lunaticCurve.Evaluate(frame) : lunatic;
 				}
 			}
@@ -53,7 +53,6 @@ namespace InstancedDanmaku
 
 		public float GetTangent(int frame)
 		{
-			// AddDeltaÇÃìsçáÇ≈êÊÇ…ï]âøÇµÇƒÇŸÇµÇ¢
 			var before = GetValue(Mathf.Max(frame - 1, 0));
 			return GetValue(frame) - before;
 		}
@@ -128,6 +127,17 @@ namespace InstancedDanmaku
 	[System.Serializable]
 	public class FlexibleValue : FlexibleValueWithoutModfier
 	{
+		[System.Serializable]
+		public enum Difficulty
+		{
+			Easy,
+			Normal,
+			Hard,
+			Lunatic,
+		}
+
+		public static Difficulty CurrentDifficulty { get; set; } = Difficulty.Normal;
+
 		public interface IModifier
 		{
 			public float ModifyValue(float original, int frame);

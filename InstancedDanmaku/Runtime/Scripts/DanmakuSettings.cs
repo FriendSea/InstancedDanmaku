@@ -11,17 +11,6 @@ namespace InstancedDanmaku
 	[CreateAssetMenu(fileName = "New Bullet Settings", menuName = "FriendSea/DanmakuSetting")]
 	public class DanmakuSettings : ScriptableObject
 	{
-		[System.Serializable]
-		public enum Difficulty
-		{
-			Easy,
-			Normal,
-			Hard,
-			Lunatic,
-		}
-
-		public static Difficulty CurrentDifficulty { get; set; }
-
 		[SerializeField]
 		internal Danmaku.Settings settings = new Danmaku.Settings();
 
