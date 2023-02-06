@@ -239,6 +239,7 @@ namespace InstancedDanmaku
 
 		void UpdateAndCollision()
 		{
+			if (Mathf.Approximately(Time.timeScale, 0f)) return;
 			Update();
 			Colission();
 		}
