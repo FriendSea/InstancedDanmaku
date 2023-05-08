@@ -23,9 +23,16 @@ namespace InstancedDanmaku
 		bool vanishEffect = true;
 
 		public Mesh Mesh => mesh;
-		public Texture2D Texture => texture;
+		public Texture2D Texture
+		{
+			get => texture;
+			set => texture = value;
+		}
 		public Vector3 Scale => scale;
-		public float Radius => radius;
+		public float Radius {
+			get => radius;
+			set => radius = value;
+		}
 		public bool VanishEffect => vanishEffect;
 
 		[System.NonSerialized]

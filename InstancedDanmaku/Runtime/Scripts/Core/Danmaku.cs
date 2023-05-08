@@ -299,14 +299,19 @@ namespace InstancedDanmaku
 #endif
 		}
 
+		public void Clear()
+		{
+			foreach (var group in groups)
+				group.Dispose();
+			groups.Clear();
+		}
+
 		bool disposed = false;
 		public void Dispose()
 		{
 			if (disposed) return;
 			disposed = true;
-			foreach (var group in groups)
-				group.Dispose();
-			groups.Clear();
+			Clear();
 
 			CurrentSettings.updateMethod.OnPlayerLoop -= UpdateAndCollision;
 			PlayerLoopInjector.RemoveAction(typeof(UnityEngine.PlayerLoop.PostLateUpdate.UpdateAllRenderers), Render);
