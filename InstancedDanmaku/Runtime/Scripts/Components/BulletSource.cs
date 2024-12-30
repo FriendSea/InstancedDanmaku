@@ -36,5 +36,9 @@ namespace InstancedDanmaku
 		{
 			spawner.DrawGizmos();
 		}
+
+  		public void ResetSpawner(){
+    			spawner.Reset();
+		}
 	}
 }
