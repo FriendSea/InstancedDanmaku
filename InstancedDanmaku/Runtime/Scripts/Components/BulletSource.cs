@@ -11,6 +11,8 @@ namespace InstancedDanmaku
 		[SerializeField]
 		bool deleteBulletsWithSource;
 
+		public BulletSpawner Spawner => spawner;
+
 		private void Awake()
 		{
 			spawner.DanmakuInstance = DanmakuSettings.Instance.Danmaku;
