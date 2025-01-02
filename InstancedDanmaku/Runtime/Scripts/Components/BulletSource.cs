@@ -16,12 +16,12 @@ namespace InstancedDanmaku
 		private void Awake()
 		{
 			spawner.DanmakuInstance = DanmakuSettings.Instance.Danmaku;
-			spawner.OwnerId = this.GetInstanceID();
 		}
 
 		private void OnEnable()
 		{
-			DanmakuSettings.Instance.Danmaku.CurrentSettings.updateMethod.OnPlayerLoop += UpdateSpawner;
+            spawner.OwnerId = this.GetInstanceID();
+            DanmakuSettings.Instance.Danmaku.CurrentSettings.updateMethod.OnPlayerLoop += UpdateSpawner;
 			spawner.Reset();
 		}
 
