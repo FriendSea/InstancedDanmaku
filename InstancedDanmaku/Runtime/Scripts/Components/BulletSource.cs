@@ -8,10 +8,13 @@ namespace InstancedDanmaku
 	{
 		[SerializeField]
 		BulletSpawner spawner = new BulletSpawner();
+		[SerializeField]
+		bool deleteBulletsWithSource;
 
 		private void Awake()
 		{
 			spawner.DanmakuInstance = DanmakuSettings.Instance.Danmaku;
+			spawner.OwnerId = this.GetInstanceID();
 		}
 
 		private void OnEnable()
@@ -23,6 +26,8 @@ namespace InstancedDanmaku
 		private void OnDisable()
 		{
 			DanmakuSettings.Instance.Danmaku.CurrentSettings.updateMethod.OnPlayerLoop -= UpdateSpawner;
+			if (deleteBulletsWithSource)
+				spawner.DeleteSpawnedBullets();
 		}
 
 		void UpdateSpawner()
@@ -38,7 +43,7 @@ namespace InstancedDanmaku
 		}
 
   		public void ResetSpawner(){
-    			spawner.Reset();
+    		spawner.Reset();
 		}
 	}
 }

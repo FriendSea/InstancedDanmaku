@@ -13,13 +13,14 @@ namespace InstancedDanmaku
 		public Vector3 velocity;
 		public Vector4 color;
 		public float scale;
+		public int owner;
 		public int CurrentFrame { get; private set; }
 		public bool Active { get; private set; }
 		internal bool Used { get; set; }
 
 		public delegate void BulletProcess(ref Bullet bullet);
 
-		internal Bullet(Vector3 position, Quaternion rotation, Vector3 velocity, Vector4 color, IBulletBehaviour behaviour)
+		internal Bullet(Vector3 position, Quaternion rotation, Vector3 velocity, Vector4 color, IBulletBehaviour behaviour, int owner)
 		{
 			this.behaviour = behaviour;
 			this.position = position;
@@ -27,6 +28,7 @@ namespace InstancedDanmaku
 			this.velocity = velocity;
 			this.scale = 1f;
 			this.color = color;
+			this.owner = owner;
 			Used = true;
 			Active = true;
 			CurrentFrame = 0;
@@ -89,10 +91,10 @@ namespace InstancedDanmaku
 			Unused = new Stack<int>(Enumerable.Range(0, MAX_BULLETS));
 		}
 
-		internal void AddNewBullet(Vector3 position, Quaternion rotation, Color color, IBulletBehaviour behaviour, Vector3 velocity = default)
+		internal void AddNewBullet(Vector3 position, Quaternion rotation, Color color, IBulletBehaviour behaviour, int owner = default, Vector3 velocity = default)
 		{
 			var index = Unused.Pop();
-			bullets[index] = new Bullet(position, rotation, velocity, new Vector4(color.r, color.g, color.b, color.a), behaviour);
+			bullets[index] = new Bullet(position, rotation, velocity, new Vector4(color.r, color.g, color.b, color.a), behaviour, owner);
 		}
 
 		List<IBulletCollider> collisionTargets = new List<IBulletCollider>();
@@ -119,7 +121,6 @@ namespace InstancedDanmaku
 #endif
 			}
 		}
-
 
 #if BULLETS_DISABLE_COLLISON_JOB
 		Collider[] colliders = new Collider[4];
@@ -174,6 +175,13 @@ namespace InstancedDanmaku
 			foreach (var bul in bullets)
 				if (bul.Active)
 					Gizmos.DrawWireSphere(bul.position, Model.Radius);
+		}
+
+		internal void RemoveWithOwner(int ownerId)
+		{
+			for (int i = 0; i < bullets.Length; i++)
+				if (bullets[i].owner == ownerId)
+					bullets[i].Destroy();
 		}
 
 		public void Dispose()
@@ -246,7 +254,7 @@ namespace InstancedDanmaku
 
 		List<BulletGroup> groups = new List<BulletGroup>();
 
-		public void AddBullet(BulletModel model, Vector3 position, Quaternion rotation, Color color, IBulletBehaviour behaviour, Vector3 velocity = default)
+		public void AddBullet(BulletModel model, Vector3 position, Quaternion rotation, Color color, IBulletBehaviour behaviour, int owner = default, Vector3 velocity = default)
 		{
 			BulletGroup group = null;
 			foreach (var g in groups)
@@ -262,7 +270,7 @@ namespace InstancedDanmaku
 				groups.Add(group);
 			}
 
-			group.AddNewBullet(position, rotation, color, behaviour, velocity);
+			group.AddNewBullet(position, rotation, color, behaviour, owner, velocity);
 		}
 
 		public void Update()
@@ -306,7 +314,13 @@ namespace InstancedDanmaku
 			groups.Clear();
 		}
 
-		bool disposed = false;
+        public void DeleteWithOwner(int ownerId)
+        {
+			foreach (var group in groups)
+				group.RemoveWithOwner(ownerId);
+        }
+
+        bool disposed = false;
 		public void Dispose()
 		{
 			if (disposed) return;

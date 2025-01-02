@@ -43,6 +43,7 @@ namespace InstancedDanmaku
 		public IBulletBehaviour Behaviour => behaviour;
 
 		public Danmaku DanmakuInstance { get; set; } = null;
+		public int OwnerId { get; set; } = 0;
 
 		int currentFrame;
 		public void Update()
@@ -66,7 +67,7 @@ namespace InstancedDanmaku
 		void Fire()
 		{
 			void AddBullet(Vector3 position, Quaternion rotation) =>
-				DanmakuInstance.AddBullet(bulletModel, position + rotation * Vector3.forward * positionOffset.GetValue(currentFrame), rotation, colors[colorIndex % colors.Length], behaviour, rotation * Vector3.forward * startSpeed.GetValue(currentFrame));
+				DanmakuInstance.AddBullet(bulletModel, position + rotation * Vector3.forward * positionOffset.GetValue(currentFrame), rotation, colors[colorIndex % colors.Length], behaviour, OwnerId, rotation * Vector3.forward * startSpeed.GetValue(currentFrame));
 
 			if (count > 0 && currentCount >= count) return;
 
@@ -84,6 +85,11 @@ namespace InstancedDanmaku
 		}
 
 		public void Reset() => currentFrame = 0;
+
+		public void DeleteSpawnedBullets()
+		{
+			DanmakuInstance.DeleteWithOwner(OwnerId);
+		}
 
 		/*
 		IEnumerable<Quaternion> GetRotations()
