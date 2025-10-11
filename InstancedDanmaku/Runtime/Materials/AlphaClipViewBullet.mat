@@ -7,13 +7,13 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: OpaqueLineBullet
-  m_Shader: {fileID: -6465566751694194690, guid: 45ddb18ac4f9e43beb855ec2db742c78, type: 3}
+  m_Name: AlphaClipViewBullet
+  m_Shader: {fileID: -6465566751694194690, guid: 951f8de9ed2476e45a64b63592eafa6e, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _ADDITIVE
-  - _ROTATE_LINE
+  - _ROTATE_VIEW
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
@@ -92,11 +92,10 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _Offset: 0
     - _Parallax: 0.02
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _ROTATE: 2
+    - _ROTATE: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
