@@ -8,7 +8,7 @@ namespace InstancedDanmaku
 	{
 		public bool DeleteBullet => true;
 
-		public void Collide(Bullet bullet)
+		public void Collide(ref Bullet bullet)
 		{
 			
 		}

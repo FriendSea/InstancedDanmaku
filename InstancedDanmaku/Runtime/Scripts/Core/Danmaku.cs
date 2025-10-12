@@ -51,7 +51,7 @@ namespace InstancedDanmaku
 
 	public interface IBulletCollider
 	{
-		void Collide(Bullet bullet);
+		void Collide(ref Bullet bullet);
 		bool DeleteBullet { get; }
 	}
 
@@ -153,7 +153,7 @@ namespace InstancedDanmaku
 				delete = true;
 			else foreach (var target in collisionTargets)
 				{
-					target.Collide(bullet);
+					target.Collide(ref bullet);
 					delete |= target.DeleteBullet;
 				}
 			if (delete)
