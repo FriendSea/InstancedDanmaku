@@ -45,7 +45,7 @@ namespace InstancedDanmaku
         public IBulletBehaviour Behaviour => behaviour;
 
         public Danmaku DanmakuInstance { get; set; } = null;
-        public int OwnerId { get; set; } = 0;
+        public EntityId OwnerId { get; set; } = EntityId.None;
 
         int currentFrame;
         public void Update(int currentFrame)

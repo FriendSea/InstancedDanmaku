@@ -13,14 +13,14 @@ namespace InstancedDanmaku
 		public Vector3 velocity;
 		public Vector4 color;
 		public float scale;
-		public int owner;
+		public EntityId owner;
 		public int CurrentFrame { get; private set; }
 		public bool Active { get; private set; }
 		internal bool Used { get; set; }
 
 		public delegate void BulletProcess(ref Bullet bullet);
 
-		internal Bullet(Vector3 position, Quaternion rotation, Vector3 velocity, Vector4 color, IBulletBehaviour behaviour, int owner)
+		internal Bullet(Vector3 position, Quaternion rotation, Vector3 velocity, Vector4 color, IBulletBehaviour behaviour, EntityId owner)
 		{
 			this.behaviour = behaviour;
 			this.position = position;
@@ -91,7 +91,7 @@ namespace InstancedDanmaku
 			Unused = new Stack<int>(Enumerable.Range(0, MAX_BULLETS));
 		}
 
-		internal void AddNewBullet(Vector3 position, Quaternion rotation, Color color, IBulletBehaviour behaviour, int owner = default, Vector3 velocity = default)
+		internal void AddNewBullet(Vector3 position, Quaternion rotation, Color color, IBulletBehaviour behaviour, EntityId owner = default, Vector3 velocity = default)
 		{
 			var index = Unused.Pop();
 			bullets[index] = new Bullet(position, rotation, velocity, new Vector4(color.r, color.g, color.b, color.a), behaviour, owner);
@@ -177,7 +177,7 @@ namespace InstancedDanmaku
 					Gizmos.DrawWireSphere(bul.position, Model.Radius);
 		}
 
-		internal void RemoveWithOwner(int ownerId)
+		internal void RemoveWithOwner(EntityId ownerId)
 		{
 			for (int i = 0; i < bullets.Length; i++)
 				if (bullets[i].owner == ownerId)
@@ -254,7 +254,7 @@ namespace InstancedDanmaku
 
 		List<BulletGroup> groups = new List<BulletGroup>();
 
-		public void AddBullet(BulletModel model, Vector3 position, Quaternion rotation, Color color, IBulletBehaviour behaviour, int owner = default, Vector3 velocity = default)
+		public void AddBullet(BulletModel model, Vector3 position, Quaternion rotation, Color color, IBulletBehaviour behaviour, EntityId owner = default, Vector3 velocity = default)
 		{
 			BulletGroup group = null;
 			foreach (var g in groups)
@@ -314,7 +314,7 @@ namespace InstancedDanmaku
 			groups.Clear();
 		}
 
-        public void DeleteWithOwner(int ownerId)
+        public void DeleteWithOwner(EntityId ownerId)
         {
 			foreach (var group in groups)
 				group.RemoveWithOwner(ownerId);

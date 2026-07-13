@@ -20,7 +20,7 @@ namespace InstancedDanmaku
 
 		private void OnEnable()
 		{
-            spawner.OwnerId = this.GetInstanceID();
+            spawner.OwnerId = this.GetEntityId();
             DanmakuSettings.Instance.Danmaku.CurrentSettings.updateMethod.OnPlayerLoop += UpdateSpawner;
 			spawner.Reset();
 		}
