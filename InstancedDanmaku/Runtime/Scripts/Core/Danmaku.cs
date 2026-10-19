@@ -91,10 +91,11 @@ namespace InstancedDanmaku
 			Unused = new Stack<int>(Enumerable.Range(0, MAX_BULLETS));
 		}
 
-		internal void AddNewBullet(Vector3 position, Quaternion rotation, Color color, IBulletBehaviour behaviour, EntityId owner = default, Vector3 velocity = default)
+		internal void AddNewBullet(Vector3 position, Quaternion rotation, Color color, IBulletBehaviour behaviour, EntityId owner = default, Vector3 velocity = default, float scale = 1f)
 		{
 			var index = Unused.Pop();
 			bullets[index] = new Bullet(position, rotation, velocity, new Vector4(color.r, color.g, color.b, color.a), behaviour, owner);
+			bullets[index].scale = scale;
 		}
 
 		List<IBulletCollider> collisionTargets = new List<IBulletCollider>();
@@ -110,7 +111,7 @@ namespace InstancedDanmaku
 					Unused.Push(i);
 
 					if (Model.VanishEffect)
-						Parent.AddBullet(Parent.CurrentSettings.vanishEffect, bullets[i].position, Quaternion.identity, bullets[i].color, Parent.CurrentSettings.vanishBulletBehaviour);
+						Parent.AddBullet(Parent.CurrentSettings.vanishEffect, bullets[i].position, bullets[i].rotation, bullets[i].color, Parent.CurrentSettings.vanishBulletBehaviour, scale: bullets[i].scale);
 				}
 
 				bullets[i].Update();
@@ -254,7 +255,7 @@ namespace InstancedDanmaku
 
 		List<BulletGroup> groups = new List<BulletGroup>();
 
-		public void AddBullet(BulletModel model, Vector3 position, Quaternion rotation, Color color, IBulletBehaviour behaviour, EntityId owner = default, Vector3 velocity = default)
+		public void AddBullet(BulletModel model, Vector3 position, Quaternion rotation, Color color, IBulletBehaviour behaviour, EntityId owner = default, Vector3 velocity = default, float scale = 1f)
 		{
 			BulletGroup group = null;
 			foreach (var g in groups)
@@ -270,7 +271,7 @@ namespace InstancedDanmaku
 				groups.Add(group);
 			}
 
-			group.AddNewBullet(position, rotation, color, behaviour, owner, velocity);
+			group.AddNewBullet(position, rotation, color, behaviour, owner, velocity, scale);
 		}
 
 		public void Update()

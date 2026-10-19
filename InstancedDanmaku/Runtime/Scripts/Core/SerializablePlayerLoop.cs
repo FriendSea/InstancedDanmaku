@@ -9,16 +9,24 @@ namespace InstancedDanmaku
     static class PlayerLoopInjector
 	{
         static Dictionary<System.Type, System.Action> actions = new Dictionary<System.Type, System.Action>();
+        static System.Action manualActions;
 
 #if UNITY_EDITOR
         static PlayerLoopInjector()
 		{
             UnityEditor.EditorApplication.playModeStateChanged += change => {
                 if (change == UnityEditor.PlayModeStateChange.EnteredEditMode)
+                {
                     actions.Clear();
+                    manualActions = null;
+                }
             };
 		}
 #endif
+
+        public static void AddManualAction(System.Action action) => manualActions += action;
+        public static void RemoveManualAction(System.Action action) => manualActions -= action;
+        public static void InvokeManual() => manualActions?.Invoke();
 
         public static void AddAction(System.Type timing, System.Action action)
         {
@@ -57,11 +65,27 @@ namespace InstancedDanmaku
         [SerializeReference]
         object timing = new UnityEngine.PlayerLoop.Update.ScriptRunBehaviourUpdate();
 
+        // timing が <none> の場合は PlayerLoop に注入せず、InvokeManual() で任意のタイミングに実行する。
+        public bool IsManual => timing == null;
+
         public event System.Action OnPlayerLoop
 		{
-            add => PlayerLoopInjector.AddAction(timing.GetType(), value);
-            remove => PlayerLoopInjector.RemoveAction(timing.GetType(), value);
+            add
+            {
+                if (IsManual) PlayerLoopInjector.AddManualAction(value);
+                else PlayerLoopInjector.AddAction(timing.GetType(), value);
+            }
+            remove
+            {
+                if (IsManual) PlayerLoopInjector.RemoveManualAction(value);
+                else PlayerLoopInjector.RemoveAction(timing.GetType(), value);
+            }
 		}
+
+        /// <summary>
+        /// timing が &lt;none&gt; の SerializablePlayerLoop に登録された処理をすべて実行する。
+        /// </summary>
+        public static void InvokeManual() => PlayerLoopInjector.InvokeManual();
     }
 
 #if UNITY_EDITOR
