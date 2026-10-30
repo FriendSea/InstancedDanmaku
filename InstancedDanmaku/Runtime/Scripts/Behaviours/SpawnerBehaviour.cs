@@ -10,6 +10,7 @@ namespace InstancedDanmaku {
         public void UpdateBullet(ref Bullet bullet)
         {
             spawner.DanmakuInstance = DanmakuSettings.Instance.Danmaku;
+            spawner.OwnerId = bullet.owner;
             spawner.Position = bullet.position;
             spawner.Rotation = bullet.rotation * Quaternion.Euler(0, 90, 0);
             spawner.Update(bullet.CurrentFrame);
