@@ -6,9 +6,9 @@ namespace InstancedDanmaku
 {
 	public class BulletCancel : MonoBehaviour, IBulletCollider
 	{
-		public bool DeleteBullet => true;
+		public bool DeleteBullet(BulletModel model) => true;
 
-		public void Collide(ref Bullet bullet)
+		public void Collide(ref Bullet bullet, BulletModel model)
 		{
 			
 		}

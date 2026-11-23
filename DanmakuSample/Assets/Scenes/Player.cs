@@ -10,9 +10,9 @@ public class Player : MonoBehaviour, InstancedDanmaku.IBulletCollider
 	[SerializeField]
 	GameObject hitEffect;
 
-	public bool DeleteBullet => true;
+	public bool DeleteBullet(BulletModel model) => true;
 
-	public void Collide(Bullet bullet)
+	public void Collide(ref Bullet bullet, BulletModel model)
 	{
 		if (hitEffect == null) return;
 		var effect = Instantiate(hitEffect, transform.position, Quaternion.identity);

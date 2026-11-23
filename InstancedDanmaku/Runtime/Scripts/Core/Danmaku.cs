@@ -51,8 +51,8 @@ namespace InstancedDanmaku
 
 	public interface IBulletCollider
 	{
-		void Collide(ref Bullet bullet);
-		bool DeleteBullet { get; }
+		void Collide(ref Bullet bullet, BulletModel model);
+		bool DeleteBullet(BulletModel model);
 	}
 
 	class BulletGroup : System.IDisposable
@@ -132,7 +132,7 @@ namespace InstancedDanmaku
 			if (Model.Radius <= 0) return;
 			for (int i = 0; i < bullets.Length; i++)
 			{
-				if (!bullets[i].Used) continue;
+				if (!bullets[i].Active) continue;
 				var count = Physics.OverlapSphereNonAlloc(bullets[i].position, Model.Radius, colliders, Parent.CurrentSettings.collisionMask, QueryTriggerInteraction.Ignore);
 				if (count <= 0) continue;
 				DoCollision(colliders[0], ref bullets[i]);
@@ -140,9 +140,13 @@ namespace InstancedDanmaku
 #else
 			SpherecastCommand.ScheduleBatch(raycastCommands, raycastHits, 20).Complete();
 			for (int i = 0; i < bullets.Length; i++)
+			{
+				// 同じティックで先に消された弾（誘爆などで消えた弾）は当てない
+				if (!bullets[i].Active) continue;
 				if (raycastCommands[i].radius > 0)
 					if (raycastHits[i].collider != null)
 						DoCollision(raycastHits[i].collider, ref bullets[i]);
+			}
 #endif
 		}
 
@@ -154,8 +158,8 @@ namespace InstancedDanmaku
 				delete = true;
 			else foreach (var target in collisionTargets)
 				{
-					target.Collide(ref bullet);
-					delete |= target.DeleteBullet;
+					target.Collide(ref bullet, Model);
+					delete |= target.DeleteBullet(Model);
 				}
 			if (delete)
 				bullet.Destroy();
