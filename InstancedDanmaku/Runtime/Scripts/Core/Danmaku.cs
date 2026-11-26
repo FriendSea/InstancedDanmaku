@@ -49,6 +49,7 @@ namespace InstancedDanmaku
 		void UpdateBullet(ref Bullet bullet);
 	}
 
+
 	public interface IBulletCollider
 	{
 		void Collide(ref Bullet bullet, BulletModel model);
@@ -181,6 +182,8 @@ namespace InstancedDanmaku
 				if (bul.Active)
 					Gizmos.DrawWireSphere(bul.position, Model.Radius);
 		}
+
+		internal Bullet[] Bullets => bullets;
 
 		internal void RemoveWithOwner(EntityId ownerId)
 		{
@@ -317,6 +320,108 @@ namespace InstancedDanmaku
 			foreach (var group in groups)
 				group.Dispose();
 			groups.Clear();
+		}
+
+		/// <summary>
+		/// 今使われている（弾の入れ物がある）BulletModel を重複なしで列挙する（foreach 用。アロケーションしない）。
+		/// 列挙中に AddBullet / Update しないこと
+		/// </summary>
+		public ModelCollection Models => new ModelCollection(groups);
+
+		/// <summary>
+		/// model の有効な弾を列挙する（foreach (ref readonly var bullet in ...) 用。アロケーションしない）。弾は書き換えられない。
+		/// 列挙中に AddBullet / Update しないこと
+		/// </summary>
+		public BulletCollection GetActiveBullets(BulletModel model) => new BulletCollection(groups, model);
+
+		public readonly struct ModelCollection
+		{
+			readonly List<BulletGroup> groups;
+
+			internal ModelCollection(List<BulletGroup> groups) => this.groups = groups;
+
+			public Enumerator GetEnumerator() => new Enumerator(groups);
+
+			public struct Enumerator
+			{
+				readonly List<BulletGroup> groups;
+				int index;
+
+				internal Enumerator(List<BulletGroup> groups)
+				{
+					this.groups = groups;
+					index = -1;
+				}
+
+				public BulletModel Current => groups[index].Model;
+
+				public bool MoveNext()
+				{
+					// 弾が多いと同じ model の入れ物が複数できるので、前に出てきた model は飛ばす（入れ物の数は少ない）
+					while (++index < groups.Count)
+						if (!AppearedBefore(index))
+							return true;
+					return false;
+				}
+
+				bool AppearedBefore(int i)
+				{
+					var model = groups[i].Model;
+					for (int j = 0; j < i; j++)
+						if (groups[j].Model == model)
+							return true;
+					return false;
+				}
+			}
+		}
+
+		public readonly struct BulletCollection
+		{
+			readonly List<BulletGroup> groups;
+			readonly BulletModel model;
+
+			internal BulletCollection(List<BulletGroup> groups, BulletModel model)
+			{
+				this.groups = groups;
+				this.model = model;
+			}
+
+			public Enumerator GetEnumerator() => new Enumerator(groups, model);
+
+			public struct Enumerator
+			{
+				readonly List<BulletGroup> groups;
+				readonly BulletModel model;
+				int groupIndex;
+				int bulletIndex;
+
+				internal Enumerator(List<BulletGroup> groups, BulletModel model)
+				{
+					this.groups = groups;
+					this.model = model;
+					groupIndex = 0;
+					bulletIndex = -1;
+				}
+
+				public ref readonly Bullet Current => ref groups[groupIndex].Bullets[bulletIndex];
+
+				public bool MoveNext()
+				{
+					while (groupIndex < groups.Count)
+					{
+						if (groups[groupIndex].Model == model)
+						{
+							var bullets = groups[groupIndex].Bullets;
+							while (++bulletIndex < bullets.Length)
+								if (bullets[bulletIndex].Active)
+									return true;
+						}
+						groupIndex++;
+						bulletIndex = -1;
+					}
+					return false;
+				}
+			}
 		}
 
         public void DeleteWithOwner(EntityId ownerId)
